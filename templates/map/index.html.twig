@@ -3,5 +3,5 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-    <div id="street-view"></div>
+    <div {{ vue_component('Hello', { 'name': 'ninjalanik' }) }}></div>
 {% endblock %}

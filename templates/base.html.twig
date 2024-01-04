@@ -7,6 +7,7 @@
 		</title>
 		<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 		{% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
 			{{ ux_controller_link_tags() }}
 		{% endblock %}
 
@@ -15,6 +16,7 @@
 		{% block body %}{% endblock %}
 
         {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
 			<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&libraries=&v=weekly" async></script>
 			{% block importmap %}
 				{{ importmap('app') }}

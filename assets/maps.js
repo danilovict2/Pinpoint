@@ -1,10 +1,23 @@
 export function initialize() {
-    new google.maps.StreetViewPanorama(
-        document.getElementById("street-view"),
+    const fenway = { lat: 42.345573, lng: -71.098326 };
+    const pano = new google.maps.StreetViewPanorama(
+        document.getElementById("pano"),
         {
-            position: { lat: 37.86926, lng: -122.254811 },
-            pov: { heading: 165, pitch: 0 },
-            zoom: 1,
-        }
+            position: fenway,
+            pov: {
+                heading: 34,
+                pitch: 10,
+            },
+            disableDefaultUI: true,
+        },
     );
+
+    const map = new google.maps.Map(document.getElementById("map"), {
+        center: {lat: 0, lng: 0},
+        zoom: 1,
+        disableDefaultUI: true
+    });
+
+    map.setStreetView(pano);
 }
+

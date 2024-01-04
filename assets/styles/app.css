@@ -5,7 +5,20 @@ body {
     padding: 0;
 }
 
-#street-view {
+#pano {
     height: 100%;
-    filter: invert(1);
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#map {
+    width: 350px;
+    height: 350px;
+    z-index: 100;
+    float: right;
+}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display: none;
 }
