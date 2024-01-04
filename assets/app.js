@@ -1,5 +1,5 @@
-import { registerVueControllerComponents } from '@symfony/ux-vue';
 import './bootstrap.js';
+import { registerVueControllerComponents } from '@symfony/ux-vue';
 import './styles/app.css';
 import { initialize } from './maps.js';
 
