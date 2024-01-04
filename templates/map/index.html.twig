@@ -3,7 +3,5 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-    <div id="pano">
-        <div id="map"></div>
-    </div>
+    <div {{ vue_component('Hello', { 'name': 'lanik' }) }}></div>
 {% endblock %}

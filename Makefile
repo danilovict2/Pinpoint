@@ -2,6 +2,7 @@ SHELL := /bin/bash
 
 server-start:
 	symfony serve -d
+	symfony run -d npm run watch
 	docker-compose up -d
 .PHONY: server-start
 
