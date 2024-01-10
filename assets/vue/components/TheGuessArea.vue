@@ -38,7 +38,8 @@ function guess() {
 
     // Distance is the radius * angular distance
     const distance = (radius * c) / 1000;
-    alert(`You are ${distance}km from the original position`);
+    const score = Math.round(5000 * Math.exp(-0.5 * (distance / 2000)**2));
+    alert(`Your score is ${score}`);
 }
 </script>
 
