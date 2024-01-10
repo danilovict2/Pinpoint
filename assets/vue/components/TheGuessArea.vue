@@ -8,8 +8,8 @@
 <script setup>
 import { ref } from 'vue';
 import TheMap from './TheMap.vue';
-const { startPos } = defineProps({
-    startPos: Object
+const { startPosition } = defineProps({
+    startPosition: Object
 });
 
 const guessLatLng = ref(null);
@@ -21,9 +21,9 @@ function guess() {
 
     // Angles need to be radians to pass trig functions!
     const lat1Radian = (position.lat() * Math.PI) / 180;
-    const lat2Radian = (startPos.lat * Math.PI) / 180;
-    const latDelta = ((position.lat() - startPos.lat) * Math.PI) / 180;
-    const longDelta = ((position.lng() - startPos.lng) * Math.PI) / 180;
+    const lat2Radian = (startPosition.lat * Math.PI) / 180;
+    const latDelta = ((position.lat() - startPosition.lat) * Math.PI) / 180;
+    const longDelta = ((position.lng() - startPosition.lng) * Math.PI) / 180;
 
     // The square of half the chord length between the points
     const a =
