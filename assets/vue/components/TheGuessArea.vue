@@ -1,17 +1,18 @@
 <template>
     <div class="guess-area">
-        <TheMap @marker-set="latLng => guessLatLng = latLng"></TheMap>
+        <Map @marker-set="latLng => guessLatLng = latLng"></Map>
         <button :disabled="!guessLatLng" @click="guess">Finish guess</button>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import TheMap from './TheMap.vue';
+import Map from './Map.vue';
 const { startPosition } = defineProps({
     startPosition: Object
 });
 
+const emit = defineEmits(['guessed']);
 const guessLatLng = ref(null);
 
 function guess() {
@@ -39,7 +40,7 @@ function guess() {
     // Distance is the radius * angular distance
     const distance = (radius * c) / 1000;
     const score = Math.round(5000 * Math.exp(-0.5 * (distance / 2000)**2));
-    alert(`Your score is ${score}`);
+    emit('guessed', score);
 }
 </script>
 

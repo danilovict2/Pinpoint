@@ -1,13 +1,11 @@
 <template>
     <div class="panorama" ref="panoramaDiv">
-        <TheGuessArea :start-position="startPosition"></TheGuessArea>        
+        <slot></slot>      
     </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import TheGuessArea from '../components/TheGuessArea.vue';
-
 const { startPosition } = defineProps({
     startPosition: Object
 });
