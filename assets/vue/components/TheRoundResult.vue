@@ -1,6 +1,7 @@
 <template>
     <div class="round-result">
-        <Map style="height: 100%;" :zoom="3" :center="{ lat: 42.345573, lng: -71.098326 }"></Map>
+        <Map style="height: 100%;" :zoom="3" :center="startPosition"
+            :markers="[startPositionMarker, guessPositionMarker]" :lines="[line]"></Map>
         <div class="round-details">
             {{ score }} / 5000
             <button @click="emit('startNextRound')">Continue</button>
@@ -10,9 +11,32 @@
 
 <script setup>
 import Map from './Map.vue';
-defineProps({
-    score: Number
+const { score, startPosition, guessPosition } = defineProps({
+    score: Number,
+    startPosition: Object,
+    guessPosition: Object,
 });
+
+const startPositionMarker = new google.maps.Marker({ position: startPosition });
+const guessPositionMarker = new google.maps.Marker({ position: guessPosition });
+
+const lineSymbol = {
+    path: "M 0,-1 0,1",
+    strokeOpacity: 1,
+    scale: 4,
+};
+const line = new google.maps.Polyline({
+    path: [startPosition, guessPosition],
+    strokeOpacity: 0,
+    icons: [
+        {
+            icon: lineSymbol,
+            offset: "0",
+            repeat: "20px",
+        },
+    ],
+});
+
 
 const emit = defineEmits(['startNextRound']);
 </script>

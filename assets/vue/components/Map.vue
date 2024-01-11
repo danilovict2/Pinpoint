@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-const { zoom, center } = defineProps({
+const { zoom, center, markers, lines } = defineProps({
     zoom: {
         type: Number,
         default: 1
@@ -12,12 +12,19 @@ const { zoom, center } = defineProps({
     center: {
         type: Object,
         default: { lat: 0, lng: 0 }
+    },
+    markers: {
+        type: Array,
+        default: []
+    },
+    lines: {
+        type: Array,
+        default: []
     }
 });
 
 const mapDiv = ref(null);
-const emit = defineEmits(['markerSet']);
-let currentMarker = null;
+const emit = defineEmits(['addMarker']);
 
 onMounted(() => {
     const googleMap = new google.maps.Map(
@@ -30,15 +37,15 @@ onMounted(() => {
         }
     );
 
-    googleMap.addListener("click", e => {
-        currentMarker?.setMap(null);
-        currentMarker = new google.maps.Marker({
-            position: e.latLng,
-            map: googleMap
-        });
+    googleMap.addListener("click", e => emit('addMarker', e.latLng, googleMap));
 
-        emit('markerSet', e.latLng);
-    });
+    for(let marker of markers) {
+        marker?.setMap(googleMap);
+    }
+
+    for(let line of lines) {
+        line?.setMap(googleMap);
+    }
 });
 </script>
 

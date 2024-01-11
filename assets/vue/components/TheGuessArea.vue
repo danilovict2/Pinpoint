@@ -1,7 +1,7 @@
 <template>
     <div class="guess-area">
-        <Map @marker-set="latLng => guessLatLng = latLng"></Map>
-        <button :disabled="!guessLatLng" @click="guess">Finish guess</button>
+        <Map @add-marker="setCurrentMarker"></Map>
+        <button :disabled="!isGuessable" @click="guess">Finish guess</button>
     </div>
 </template>
 
@@ -13,12 +13,22 @@ const { startPosition } = defineProps({
 });
 
 const emit = defineEmits(['guessed']);
-const guessLatLng = ref(null);
+let currentMarker = null;
+const isGuessable = ref(false);
+
+function setCurrentMarker(latLng, map) {
+    isGuessable.value = true;
+    currentMarker?.setMap(null);
+    currentMarker = new google.maps.Marker({
+        position: latLng,
+        map: map
+    });
+}
 
 function guess() {
     // Earth's radius in metres (mean radius = 6,371km)
     const radius = 6371e3;
-    const position = guessLatLng.value;
+    const position = currentMarker.position;
 
     // Angles need to be radians to pass trig functions!
     const lat1Radian = (position.lat() * Math.PI) / 180;
@@ -40,7 +50,7 @@ function guess() {
     // Distance is the radius * angular distance
     const distance = (radius * c) / 1000;
     const score = Math.round(5000 * Math.exp(-0.5 * (distance / 2000)**2));
-    emit('guessed', score);
+    emit('guessed', score, { lat: position.lat(), lng: position.lng() });
 }
 </script>
 

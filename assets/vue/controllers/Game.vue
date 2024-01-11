@@ -1,8 +1,9 @@
 <template>
     <ThePanorama :start-position="currentRoundStartPosition" v-if="roundScore === null">
-        <TheGuessArea :start-position="currentRoundStartPosition" @guessed="handleGuess"></TheGuessArea>  
+        <TheGuessArea :start-position="currentRoundStartPosition" @guessed="handleGuess"></TheGuessArea>
     </ThePanorama>
-    <TheRoundResult v-else :score="roundScore" @start-next-round="startRound()"></TheRoundResult>
+    <TheRoundResult v-else :start-position="currentRoundStartPosition" :guess-position="currentRoundGuessPosition"
+        :score="roundScore" @start-next-round="startRound()"></TheRoundResult>
 </template>
 
 <script setup>
@@ -13,6 +14,7 @@ import { ref } from 'vue';
 
 const roundScore = ref(null);
 const currentRoundStartPosition = ref(null);
+const currentRoundGuessPosition = ref(null);
 startRound();
 
 function startRound() {
@@ -26,11 +28,12 @@ function pickStartPosition() {
         { lat: 41.8902, lng: 12.4922 }, { lat: 25.195302, lng: 55.272879 }, { lat: 1.283404, lng: 103.863134 },
         { lat: 29.976768, lng: 31.135538 }, { lat: 40.757876, lng: -73.985592 }, { lat: 42.345573, lng: -71.098326 }
     ];
-    
+
     return places[Math.floor(Math.random() * (places.length))];
 }
 
-function handleGuess(score) {
+function handleGuess(score, guessPosition) {
     roundScore.value = score;
+    currentRoundGuessPosition.value = guessPosition;
 }
 </script>
