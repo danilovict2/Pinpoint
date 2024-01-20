@@ -27,7 +27,7 @@ const mapDiv = ref(null);
 const emit = defineEmits(['addMarker']);
 
 onMounted(() => {
-    const googleMap = new google.maps.Map(
+    const map = new google.maps.Map(
         mapDiv.value,
         {
             center: center,
@@ -37,14 +37,14 @@ onMounted(() => {
         }
     );
 
-    googleMap.addListener("click", e => emit('addMarker', e.latLng, googleMap));
+    map.addListener("click", e => emit('addMarker', e.latLng, map));
 
     for(let marker of markers) {
-        marker?.setMap(googleMap);
+        marker.setMap(map);
     }
 
     for(let line of lines) {
-        line?.setMap(googleMap);
+        line.setMap(map);
     }
 });
 </script>

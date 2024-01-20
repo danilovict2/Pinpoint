@@ -37,7 +37,6 @@ const line = new google.maps.Polyline({
     ],
 });
 
-
 const emit = defineEmits(['startNextRound']);
 </script>
 
