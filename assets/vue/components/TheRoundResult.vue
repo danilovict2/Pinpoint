@@ -1,17 +1,19 @@
 <template>
-    <div class="round-result">
+    <div class="result">
         <Map style="height: 100%;" :zoom="3" :center="startPosition"
             :markers="[startPositionMarker, guessPositionMarker]" :lines="[line]"></Map>
-        <div class="round-details">
+        <div class="details">
+            ROUND {{ round }} / 5
             {{ score }} / 5000
-            <button @click="emit('startNextRound')">Continue</button>
+            <button @click="emit('roundEnd')">{{ round === 5 ? 'VIEW RESULTS' : 'CONTINUE' }}</button>
         </div>
     </div>
 </template>
 
 <script setup>
 import Map from './Map.vue';
-const { score, startPosition, guessPosition } = defineProps({
+const { score, startPosition, guessPosition, round } = defineProps({
+    round: Number,
     score: Number,
     startPosition: Object,
     guessPosition: Object,
@@ -37,17 +39,17 @@ const line = new google.maps.Polyline({
     ],
 });
 
-const emit = defineEmits(['startNextRound']);
+const emit = defineEmits(['roundEnd']);
 </script>
 
-<style scoped>
-.round-result {
+<style>
+.result {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-.round-details {
+.details {
     position: absolute;
     top: 0;
     right: 0;

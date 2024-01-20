@@ -1,12 +1,16 @@
 <template>
-    <ThePanorama :start-position="currentRoundStartPosition" v-if="roundScore === null">
-        <TheGuessArea :start-position="currentRoundStartPosition" @guessed="handleGuess"></TheGuessArea>
-    </ThePanorama>
-    <TheRoundResult v-else :start-position="currentRoundStartPosition" :guess-position="currentRoundGuessPosition"
-        :score="roundScore" @start-next-round="startRound()"></TheRoundResult>
+    <TheFinalResults v-if="isGameOver"></TheFinalResults>
+    <div class="game" style="height: 100%;" v-else>
+        <ThePanorama :start-position="currentRoundStartPosition" v-if="roundScore === null">
+            <TheGuessArea :start-position="currentRoundStartPosition" @guessed="handleGuess"></TheGuessArea>
+        </ThePanorama>
+        <TheRoundResult v-else :start-position="currentRoundStartPosition" :guess-position="currentRoundGuessPosition"
+            :score="roundScore" :round="round" @round-end="handleRoundEnd"></TheRoundResult>
+    </div>
 </template>
 
 <script setup>
+import TheFinalResults from '../components/TheFinalResults.vue';
 import TheGuessArea from '../components/TheGuessArea.vue';
 import ThePanorama from '../components/ThePanorama.vue';
 import TheRoundResult from '../components/TheRoundResult.vue';
@@ -15,11 +19,22 @@ import { ref } from 'vue';
 const roundScore = ref(null);
 const currentRoundStartPosition = ref(null);
 const currentRoundGuessPosition = ref(null);
+const round = ref(0);
+const isGameOver = ref(false);
 startRound();
+
+function handleRoundEnd() {
+    if (round.value < 5) {
+        startRound();
+    } else {
+        isGameOver.value = true;
+    }
+}
 
 function startRound() {
     currentRoundStartPosition.value = pickStartPosition();
     roundScore.value = null;
+    round.value++;
 }
 
 function pickStartPosition() {
