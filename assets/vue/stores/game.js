@@ -1,5 +1,5 @@
 import { reactive } from "vue";
 
-export const guess = reactive({
+export const game = reactive({
     guesses: []
 });

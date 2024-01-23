@@ -8,13 +8,13 @@
 </template>
 
 <script setup>
-import { guess } from '../stores/guess';
+import { game } from '../stores/game';
 import Map from './Map.vue';
 
 const markers = [];
 const lines = [];
 
-guess.guesses.forEach((markerPair) => {
+game.guesses.forEach((markerPair) => {
     markers.push(markerPair.startPositionMarker);
     markers.push(markerPair.endPositionMarker);
     lines.push(markerPair.lineBetweenMarkers);

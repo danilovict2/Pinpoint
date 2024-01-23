@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { guess } from '../stores/guess.js';
+import { game } from '../stores/game.js';
 import MarkerPair from '../services/MarkerPair.js';
 import Map from './Map.vue';
 const { score, startPosition, guessPosition, round } = defineProps({
@@ -22,7 +22,7 @@ const { score, startPosition, guessPosition, round } = defineProps({
 });
 
 const pair = new MarkerPair(startPosition, guessPosition);
-guess.guesses.push(pair);
+game.guesses.push(pair);
 
 const emit = defineEmits(['roundEnd']);
 </script>
