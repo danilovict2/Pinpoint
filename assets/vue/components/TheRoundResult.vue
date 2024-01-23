@@ -1,7 +1,7 @@
 <template>
     <div class="result">
         <Map style="height: 100%;" :zoom="3" :center="startPosition"
-            :markers="[startPositionMarker, guessPositionMarker]" :lines="[line]"></Map>
+            :markers="[pair.startPositionMarker, pair.endPositionMarker]" :lines="[pair.lineBetweenMarkers]"></Map>
         <div class="details">
             ROUND {{ round }} / 5
             {{ score }} / 5000
@@ -11,6 +11,8 @@
 </template>
 
 <script setup>
+import { guess } from '../stores/guess.js';
+import MarkerPair from '../services/MarkerPair.js';
 import Map from './Map.vue';
 const { score, startPosition, guessPosition, round } = defineProps({
     round: Number,
@@ -19,25 +21,8 @@ const { score, startPosition, guessPosition, round } = defineProps({
     guessPosition: Object,
 });
 
-const startPositionMarker = new google.maps.Marker({ position: startPosition });
-const guessPositionMarker = new google.maps.Marker({ position: guessPosition });
-
-const lineSymbol = {
-    path: "M 0,-1 0,1",
-    strokeOpacity: 1,
-    scale: 4,
-};
-const line = new google.maps.Polyline({
-    path: [startPosition, guessPosition],
-    strokeOpacity: 0,
-    icons: [
-        {
-            icon: lineSymbol,
-            offset: "0",
-            repeat: "20px",
-        },
-    ],
-});
+const pair = new MarkerPair(startPosition, guessPosition);
+guess.guesses.push(pair);
 
 const emit = defineEmits(['roundEnd']);
 </script>

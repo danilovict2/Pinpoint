@@ -1,6 +1,6 @@
 <template>
     <div class="result">
-        <Map style="height: 100%;" :zoom="3"></Map>
+        <Map style="height: 100%;" :zoom="3" :markers="markers" :lines="lines"></Map>
         <div class="details">
             <h1>The final results are in!</h1>
         </div>
@@ -8,6 +8,15 @@
 </template>
 
 <script setup>
+import { guess } from '../stores/guess';
 import Map from './Map.vue';
 
+const markers = [];
+const lines = [];
+
+guess.guesses.forEach((markerPair) => {
+    markers.push(markerPair.startPositionMarker);
+    markers.push(markerPair.endPositionMarker);
+    lines.push(markerPair.lineBetweenMarkers);
+});
 </script>
