@@ -1,6 +1,12 @@
 <template>
     <div class="guess-area">
         <Map @add-marker="setCurrentMarker"></Map>
+    </div>
+    <div class="container">
+        <div class="round-details">
+                <h2>Round: X/5</h2>
+                <h2>Time: 2:00</h2>
+        </div>
         <button :disabled="!isGuessable" @click="guess">Finish guess</button>
     </div>
 </template>
@@ -59,7 +65,62 @@ function guess() {
     z-index: 2;
     display: flex;
     flex-direction: column;
-    width: 350px;
+    width: 300px;
+    height: 250px;
     gap: 10px;
+    position: absolute;
+    right: 3rem;
+    transition: all 0.3s ease-in-out;
+    bottom: 6rem;
+}
+
+.guess-area:hover{
+    width: 700px;
+    height: 800px;
+    margin-bottom: -250px;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 1rem;
+    right: 3rem;
+    gap: 20px;
+    align-items: flex-start;
+    filter: invert(1);
+    z-index: 2;
+}
+
+.round-details{
+    z-index: 2;
+    width: 380px;
+    background-color: #1c1d1e;
+    color:#ffff;
+    display: flex;
+    flex-direction: row;
+    height: 45px;
+    justify-content: space-around;
+    padding-bottom: 15px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+button{
+    z-index: 2;
+    color: white;
+    background-color: rgba(177, 177, 177, 0.675);
+    font-size: larger;
+    width: 300px;
+    height: 60px;
+    cursor: pointer;
+    transition: 0.2 ease-in-out;
+    border-radius: 10px;
+    border: none;
+}
+button:enabled{
+    background-color: rgb(0, 179, 255);
+}
+button:hover{
+    background-color: rgb(0, 142, 203);
 }
 </style>

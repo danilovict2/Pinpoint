@@ -32,6 +32,7 @@ const emit = defineEmits(['roundEnd']);
     position: relative;
     width: 100%;
     height: 100%;
+    filter: invert(1);
 }
 
 .details {
@@ -43,5 +44,6 @@ const emit = defineEmits(['roundEnd']);
     height: 100%;
     background-color: #292548;
     color: white;
+    filter: invert(1);
 }
 </style>

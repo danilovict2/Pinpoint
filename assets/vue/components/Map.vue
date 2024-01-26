@@ -33,7 +33,9 @@ onMounted(() => {
             center: center,
             zoom: zoom,
             disableDefaultUI: true,
-            clickableIcons: false
+            clickableIcons: false,
+            draggableCursor: 'crosshair',
+            draggingCursor: 'croshair',
         }
     );
 
@@ -51,8 +53,9 @@ onMounted(() => {
 
 <style scoped>
 .map {
-    height: 350px;
+    height: 550px;
     display: flex;
     flex-direction: column-reverse;
+    filter: invert(1);
 }
 </style>
