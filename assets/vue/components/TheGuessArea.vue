@@ -117,10 +117,8 @@ button{
     border-radius: 10px;
     border: none;
 }
+
 button:enabled{
     background-color: rgb(0, 179, 255);
-}
-button:hover{
-    background-color: rgb(0, 142, 203);
 }
 </style>
