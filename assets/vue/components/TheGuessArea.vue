@@ -1,13 +1,13 @@
 <template>
     <div class="guess-area">
-        <Map @add-marker="setCurrentMarker" @keyup.space="guess"></Map>
+        <Map @add-marker="setCurrentMarker" @keyup.space="guessButton.click()"></Map>
     </div>
     <div class="container">
         <div class="round-details">
                 <h2>Round: X/5</h2>
                 <h2>Time: 2:00</h2>
         </div>
-        <button :disabled="!isGuessable" @click="guess">Finish guess</button>
+        <button :disabled="!isGuessable" @click="guess" ref="guessButton">Finish guess</button>
     </div>
 </template>
 
@@ -21,6 +21,7 @@ const { startPosition } = defineProps({
 const emit = defineEmits(['guessed']);
 let currentMarker = null;
 const isGuessable = ref(false);
+const guessButton = ref(null);
 
 function setCurrentMarker(latLng, map) {
     isGuessable.value = true;
