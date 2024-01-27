@@ -1,5 +1,5 @@
 <template>
-    <TheFinalResults v-if="isGameOver"></TheFinalResults>
+    <TheFinalResults v-if="isGameOver" :score="score"></TheFinalResults>
     <div class="game" style="height: 100%;" v-else>
         <ThePanorama :start-position="currentRoundStartPosition" v-if="roundScore === null">
             <TheGuessArea :start-position="currentRoundStartPosition" @guessed="handleGuess"></TheGuessArea>
@@ -21,6 +21,7 @@ const currentRoundStartPosition = ref(null);
 const currentRoundGuessPosition = ref(null);
 const round = ref(0);
 const isGameOver = ref(false);
+let score = 0;
 startRound();
 
 function handleRoundEnd() {
@@ -47,8 +48,9 @@ function pickStartPosition() {
     return places[Math.floor(Math.random() * (places.length))];
 }
 
-function handleGuess(score, guessPosition) {
-    roundScore.value = score;
+function handleGuess(rndScore, guessPosition) {
+    roundScore.value = rndScore;
     currentRoundGuessPosition.value = guessPosition;
+    score += rndScore;
 }
 </script>
