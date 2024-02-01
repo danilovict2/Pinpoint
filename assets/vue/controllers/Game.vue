@@ -53,4 +53,7 @@ function handleGuess(rndScore, guessPosition) {
     currentRoundGuessPosition.value = guessPosition;
     score += rndScore;
 }
+
+// UNCOMMENT WHEN NOT IN DEVELOPMENT
+//window.onbeforeunload = () => "This page is asking you to confirm that you want to leave — information you've entered may not be saved."; 
 </script>

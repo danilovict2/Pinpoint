@@ -4,7 +4,7 @@
         <div class="details">
             <h1>The final results are in!</h1>
             <div class="player-scores">
-                <h1>1 |</h1> <span style="display: flex; flex-direction: column;">name {{ score }}</span>
+                <h1>1 |</h1> <div style="display: flex; flex-direction: column;">name <strong>{{ score }}</strong></div>
             </div>
         </div>
     </div>
