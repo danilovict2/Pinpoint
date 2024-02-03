@@ -4,8 +4,8 @@
     </div>
     <div class="container">
         <div class="round-details">
-                <h2>Round: X/5</h2>
-                <h2>Time: 2:00</h2>
+                <h2>Round: {{ round }}/5</h2>
+                <h2>Time: <span>{{ timer.minutes }}</span>:<span>{{ timer.seconds }}</span></h2>
         </div>
         <button :disabled="!isGuessable" @click="guess" ref="guessButton">Finish guess</button>
     </div>
@@ -14,14 +14,17 @@
 <script setup>
 import { ref } from 'vue';
 import Map from './Map.vue';
+import { useTimer } from 'vue-timer-hook';
 const { startPosition } = defineProps({
-    startPosition: Object
+    startPosition: Object,
+    round: Number
 });
 
 const emit = defineEmits(['guessed']);
 let currentMarker = null;
 const isGuessable = ref(false);
 const guessButton = ref(null);
+const timer = useTimer(new Date().setSeconds(new Date().getSeconds() + 180));
 
 function setCurrentMarker(latLng, map) {
     isGuessable.value = true;
