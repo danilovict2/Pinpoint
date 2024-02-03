@@ -24,6 +24,7 @@ const emit = defineEmits(['guessed']);
 let currentMarker = null;
 const isGuessable = ref(false);
 const guessButton = ref(null);
+// FIXED TO THREE MINUTES
 const timer = useTimer(new Date().setSeconds(new Date().getSeconds() + 180));
 
 function setCurrentMarker(latLng, map) {
