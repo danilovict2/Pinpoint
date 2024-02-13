@@ -1,6 +1,6 @@
 <template>
     <div class="result">
-        <Map style="height: 100%;" :zoom="3" :center="startPosition"
+        <Map style="height: 100%;" fit-bounds :center="guessPosition"
             :markers="[pair.startPositionMarker, pair.endPositionMarker]" :lines="[pair.lineBetweenMarkers]"></Map>
         <div class="details">
             ROUND {{ round }} / 5

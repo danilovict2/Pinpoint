@@ -2,7 +2,7 @@
     <TheFinalResults v-if="isGameOver" :score="score"></TheFinalResults>
     <div class="game" style="height: 100%;" v-else>
         <ThePanorama :start-position="currentRoundStartPosition" v-if="roundScore === null">
-            <TheGuessArea :start-position="currentRoundStartPosition" @guessed="handleGuess"></TheGuessArea>
+            <TheGuessArea :start-position="currentRoundStartPosition" :round="round" @guessed="handleGuess"></TheGuessArea>
         </ThePanorama>
         <TheRoundResult v-else :start-position="currentRoundStartPosition" :guess-position="currentRoundGuessPosition"
             :score="roundScore" :round="round" @round-end="handleRoundEnd"></TheRoundResult>
@@ -53,4 +53,7 @@ function handleGuess(rndScore, guessPosition) {
     currentRoundGuessPosition.value = guessPosition;
     score += rndScore;
 }
+
+// UNCOMMENT WHEN NOT IN DEVELOPMENT
+//window.onbeforeunload = () => "This page is asking you to confirm that you want to leave — information you've entered may not be saved."; 
 </script>
