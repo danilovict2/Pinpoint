@@ -1,6 +1,6 @@
 <template>
     <div class="result">
-        <Map style="height: 100%;" :zoom="3" :markers="markers" :lines="lines"></Map>
+        <Map class="result-map" :zoom="3" :markers="markers" :lines="lines"></Map>
         <div class="details">
             <h1>The final results are in!</h1>
             <div class="player-scores">
@@ -26,3 +26,21 @@ game.guesses.forEach((markerPair) => {
     lines.push(markerPair.lineBetweenMarkers);
 });
 </script>
+
+<style>
+.result-map{
+    height: 100%;
+    display: inline;
+    position: relative;
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    flex: .8;
+    background-image: url(https://geotastic.b-cdn.net/app_assets/result-background-right.jpg);
+    background-position: top center;
+    background-size: cover;
+    min-width: 500px;
+}
+</style>

@@ -9,14 +9,14 @@ export default class MarkerPair {
     }
 
     get endPositionMarker() {
-        return new google.maps.Marker({ position: this._endPosition });
+        return new google.maps.Marker({ position: this._endPosition});
     }
 
     get lineBetweenMarkers() {
         const lineSymbol = {
             path: "M 0,-1 0,1",
             strokeOpacity: 1,
-            scale: 4,
+            scale: 2,
         };
 
         return new google.maps.Polyline({
@@ -26,7 +26,7 @@ export default class MarkerPair {
                 {
                     icon: lineSymbol,
                     offset: "0",
-                    repeat: "20px",
+                    repeat: "15px",
                 },
             ],
         });

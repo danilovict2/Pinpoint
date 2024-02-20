@@ -4,10 +4,17 @@
     </div>
     <div class="container">
         <div class="round-details">
-                <h2>Round: {{ round }}/5</h2>
-                <h2>Time: <span>{{ timer.minutes }}</span>:<span>{{ timer.seconds }}</span></h2>
+            <div class="box">
+                <h4>Mapa:<br> Placeholder</h4>
+            </div>
+            <div class="box round">
+                <h4>Runda:<br> {{ round }}/5</h4>
+            </div>
+            <div style="padding: 0px 10px;">
+                <h4>Vreme:<br> <span>{{ timer.minutes }}</span>:<span>{{ timer.seconds }}</span></h4>
+            </div>
         </div>
-        <button :disabled="!isGuessable" @click="guess" ref="guessButton">Finish guess</button>
+        <button :disabled="!isGuessable" @click="guess" ref="guessButton">Potvrdi pogodak</button>
     </div>
 </template>
 
@@ -75,14 +82,20 @@ function guess() {
     gap: 10px;
     position: absolute;
     right: 3rem;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.1s ease-out;
     bottom: 6rem;
+    opacity: .6;
+    transition-delay: 0.5s;
+    margin-top: 100px;
 }
 
 .guess-area:hover{
-    width: 700px;
-    height: 800px;
-    margin-bottom: -250px;
+    width: 640px;
+    height: 700px;
+    margin-bottom: -150px;
+    opacity: 1;
+    transition-delay: 0s;
+    margin-top: 0px;
 }
 .container{
     display: flex;
@@ -98,16 +111,29 @@ function guess() {
 
 .round-details{
     z-index: 2;
-    width: 380px;
-    background-color: #1c1d1e;
+    width: 320px;
+    background-color: #202020;
     color:#ffff;
     display: flex;
     flex-direction: row;
-    height: 45px;
-    justify-content: space-around;
-    padding-bottom: 15px;
+    height: 55px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 5px;
+    gap: 20px;
+    text-align: center;
+}
+
+h4{
+    margin-top: 10px;
+}
+
+.round{
+    margin-left: -25px;
+}
+
+.box{
+    border-right: 1px solid rgba(255,255,255,.2);
+    padding: 0px 18px;
 }
 
 button{
@@ -116,14 +142,15 @@ button{
     background-color: rgba(177, 177, 177, 0.675);
     font-size: larger;
     width: 300px;
-    height: 60px;
+    height: 55px;
     cursor: pointer;
     transition: 0.2 ease-in-out;
-    border-radius: 10px;
+    border-radius: 5px;
     border: none;
 }
 
 button:enabled{
-    background-color: rgb(0, 179, 255);
+    background-color: #338ad7;
+    opacity: 1;
 }
 </style>
