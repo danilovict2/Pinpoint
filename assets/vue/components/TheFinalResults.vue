@@ -1,8 +1,8 @@
 <template>
     <div class="result">
-        <Map class="result-map" :zoom="3" :markers="markers" :lines="lines"></Map>
+        <Map class="result-map" style="height: 100%;" :zoom="3" :markers="markers" :lines="lines"></Map>
         <div class="details">
-            <h1>The final results are in!</h1>
+            <h1>Konačni rezultati</h1>
             <div class="player-scores">
                 <h1>1 |</h1> <div style="display: flex; flex-direction: column;">name <strong>{{ score }}</strong></div>
             </div>

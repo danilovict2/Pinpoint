@@ -14,7 +14,7 @@
                 <h4>Vreme:<br> <span>{{ timer.minutes }}</span>:<span>{{ timer.seconds }}</span></h4>
             </div>
         </div>
-        <button :disabled="!isGuessable" @click="guess" ref="guessButton">Potvrdi pogodak</button>
+        <button :disabled="!isGuessable" @click="guess" ref="guessButton">Pogodi</button>
     </div>
 </template>
 
@@ -140,17 +140,23 @@ button{
     z-index: 2;
     color: white;
     background-color: rgba(177, 177, 177, 0.675);
-    font-size: larger;
+    font-size: 25px;
     width: 300px;
     height: 55px;
     cursor: pointer;
     transition: 0.2 ease-in-out;
     border-radius: 5px;
     border: none;
+    pointer-events: none;
 }
 
 button:enabled{
     background-color: #338ad7;
     opacity: 1;
+    pointer-events: all;
+}
+
+button:hover:enabled{
+    background-color: #2e79bb;
 }
 </style>

@@ -3,9 +3,12 @@
         <Map style="height: 100%;" fit-bounds :center="guessPosition"
             :markers="[pair.startPositionMarker, pair.endPositionMarker]" :lines="[pair.lineBetweenMarkers]"></Map>
         <div class="details">
-            ROUND {{ round }} / 5
-            {{ score }} / 5000
-            <button @click="emit('roundEnd')">{{ round === 5 ? 'VIEW RESULTS' : 'CONTINUE' }}</button>
+            <span class="round-count">Runda <strong style="color: #69686f;">{{ round }} / 5</strong> je završena</span>
+            Broj bodova u protekloj rundi:
+            <span class="max-score"><span class="score">{{ score }}</span> / 5000</span>
+            Razdaljina od tačne lokacije:
+            <span style="color: white;">5 km||m</span>
+            <button class="continue-btn" @click="emit('roundEnd')">{{ round === 5 ? 'Prikaži rezultate' : 'Sledeća runda' }}</button>
         </div>
     </div>
 </template>
@@ -35,15 +38,61 @@ const emit = defineEmits(['roundEnd']);
     filter: invert(1);
 }
 
-.details {
+.details{
     position: absolute;
     top: 0;
     right: 0;
     z-index: 2;
     width: 500px;
     height: 100%;
-    background-color: #292548;
-    color: white;
+    color: #78777c;
     filter: invert(1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.round-count{
+    border: 1px solid #434343;
+    border-radius: 10px;
+    width: max-content;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #6e6d75;
+    font-size: 17px;
+    margin-bottom: 40px;
+}
+
+.continue-btn{
+    margin-top: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
+    background-color: #338ad7;
+    color: white;
+    width: 300px;
+    height: 55px;
+    cursor: pointer;
+    transition: 0.2 ease-in-out;
+    border-radius: 5px;
+    border: none;
+}
+
+.continue-btn:hover{
+    background-color: #2e79bb;
+}
+
+.score{
+    font-size: 30px;
+    color: #43a047;
+}
+
+.max-score{
+    font-size: 18px;
+    margin-bottom: 50px;
 }
 </style>
