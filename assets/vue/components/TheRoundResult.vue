@@ -86,6 +86,12 @@ const emit = defineEmits(['roundEnd']);
     background-color: #2e79bb;
 }
 
+
+.continue-btn:hover:active{
+    background-color: rgb(45, 111, 170);
+    transition: 0.1s ease-in-out;
+}
+
 .score{
     font-size: 30px;
     color: #43a047;

@@ -159,4 +159,9 @@ button:enabled{
 button:hover:enabled{
     background-color: #2e79bb;
 }
+
+button:hover:enabled:active{
+    background-color: #4d98d8;
+    transition: 0.2s ease-in-out;
+}
 </style>
