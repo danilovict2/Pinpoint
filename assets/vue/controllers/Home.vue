@@ -3,27 +3,9 @@
         <button class="about-us-btn">O NAMA</button>
         <img src="/img/logo.png" alt="logo" class="logo">
         <div class="login-signup">
-            <button @click="toggleModal" type="button" class="login">PRIJAVI SE</button>
-            <button class="signup">NAPRAVI NALOG</button>
+            <button @click="toggleLoginModal" type="button" class="login">PRIJAVI SE</button>
+            <button @click="toggleRegisterModal" type="button" class="signup">NAPRAVI NALOG</button>
         </div>
-    </div>
-
-    <div class="modal">
-        <Modal @close="toggleModal" :modalActive="modalActive">
-            <div class="modal-content">
-                <form action="">
-                    <input type="email" placeholder="Email" required>
-                    <input type="password" placeholder="Lozinka" required>
-                    <div class="login-buttons">
-                        <a href="#">Zaboravili ste lozinku?</a>
-                        <button class="login">PRIJAVI SE</button>
-                    </div>
-                    <div class="signup-section">
-                        <h4 style="color: #9e9e9e; font-weight: 700;">Nemaš nalog? <span style="color: #338ad7; font-weight: 800; cursor: pointer;">Napravi nalog</span></h4>
-                    </div>
-                </form>
-            </div>
-        </Modal>
     </div>
 
     <div class="middle-section">
@@ -31,30 +13,29 @@
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis quod corporis ea accusantium assumenda aut
         deleniti commodi maiores tempore possimus nisi sit minus aliquid corrupti fugit doloribus, aspernatur ratione ut!
     </div>
+
+    <LoginModal :modal-active="loginModalActive" @close="toggleLoginModal"></LoginModal>
+    <RegisterModal :modal-active="registerModalActive" @close="toggleRegisterModal"></RegisterModal>
 </template>
 
-<script>
-import Modal from "../components/Modal.vue";
+<script setup>
 import { ref } from "vue";
-export default {
-    name: "modal",
-    components: {
-        Modal,
-    },
-    setup() {
-        const modalActive = ref(false);
+import LoginModal from "../components/LoginModal.vue";
+import RegisterModal from "../components/RegisterModal.vue";
 
-        const toggleModal = () => {
-            modalActive.value = !modalActive.value;
-        };
+const loginModalActive = ref(false);
+const registerModalActive = ref(false);
 
-        return { modalActive, toggleModal };
-    },
-};
+function toggleLoginModal() {
+    loginModalActive.value = !loginModalActive.value; 
+}
+
+function toggleRegisterModal() {
+    registerModalActive.value = !registerModalActive.value; 
+}
 </script>
 
 <style scoped>
-
 .navbar {
     width: 100%;
     position: sticky;
@@ -67,7 +48,7 @@ export default {
     box-shadow: 0px 5px 10px rgb(0, 0, 0);
 }
 
-.middle-section{
+.middle-section {
     position: relative;
 }
 
@@ -109,53 +90,6 @@ export default {
 
 }
 
-form{
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    gap: 15px;
-}
-
-input{
-    padding: 10px;
-    font-size: medium;
-    border: 1px solid #9e9e9e;
-    border-radius: 5px;
-    background: none;
-    color: white;
-    transition: all 0.3s ease-in-out;
-    outline: none;
-    box-sizing: border-box;
-}
-
-input:hover{
-    border: 1px solid white;
-}
-
-input:focus{
-    border: 1px solid #338ad7;
-}
-
-.login-buttons{
-    display: flex;
-    justify-content: space-between;
-}
-
-.login-buttons a, button{
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.signup-section{
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
 .login-signup {
     flex-shrink: 0;
 }
@@ -171,17 +105,6 @@ input:focus{
     cursor: pointer;
 }
 
-.login {
-    background-color: #338ad7;
-    border: none;
-    transition: 0.2s ease-in-out;
-}
-
-.login:hover {
-    background-color: #28669d;
-    transition: 0.2s ease-in-out;
-}
-
 .signup {
     background-color: #b7b7b701;
     border: 1px solid white;
@@ -191,4 +114,11 @@ input:focus{
 .signup:hover {
     background-color: #b7b7b777;
     transition: 0.2s ease-in-out;
-}</style>
+}
+
+.login {
+    background-color: #338ad7;
+    border: none;
+    transition: 0.2s ease-in-out;
+}
+</style>
