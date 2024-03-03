@@ -16,3 +16,14 @@ h4{
 .gmnoprint a, .gmnoprint span, .gm-style-cc {
     display: none;
 }
+
+@keyframes pop-in {
+    0% { opacity: 0; transform: scale(0.1); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pop-out {
+    from{transform:scale(0)}
+    80%{transform:scale(1.2)}
+    to{transform:scale(1)}
+}
