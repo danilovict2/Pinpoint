@@ -3,8 +3,6 @@
 
     <div class="middle-section">
         <img src="/img/homepage-bg.jpg" class="middle-section-bg" alt="">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis quod corporis ea accusantium assumenda aut
-        deleniti commodi maiores tempore possimus nisi sit minus aliquid corrupti fugit doloribus, aspernatur ratione ut!
     </div>
 
     <LoginModal :modal-active="loginModalActive" @close="toggleLoginModal"></LoginModal>

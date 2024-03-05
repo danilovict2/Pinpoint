@@ -51,7 +51,7 @@ const emit = defineEmits(['close']);
 
 .modal-animation-enter-active,
 .modal-animation-leave-active {
-    transition: opacity 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02);
+    transition: opacity 0.2s cubic-bezier(0.52, 0.02, 0.19, 1.02);
 }
 
 .modal-animation-enter-from,
@@ -60,11 +60,11 @@ const emit = defineEmits(['close']);
 }
 
 .modal-animation-inner-enter-active {
-    transition: all 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02) 0.15s;
+    transition: all 0.2s cubic-bezier(0.52, 0.02, 0.19, 1.02) 0.15s;
 }
 
 .modal-animation-inner-leave-active {
-    transition: all 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02);
+    transition: all 0.2s cubic-bezier(0.52, 0.02, 0.19, 1.02);
 }
 
 .modal-animation-inner-enter-from {
