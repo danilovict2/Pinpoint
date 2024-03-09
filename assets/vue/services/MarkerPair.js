@@ -5,11 +5,11 @@ export default class MarkerPair {
     }
 
     get startPositionMarker() {
-        return new google.maps.Marker({ position: this._startPosition });
+        return new google.maps.Marker({ position: this._startPosition, icon: URL = "./img/target-marker.png" });
     }
 
     get endPositionMarker() {
-        return new google.maps.Marker({ position: this._endPosition});
+        return new google.maps.Marker({ position: this._endPosition, icon: URL = "./img/player-marker.png" });
     }
 
     get lineBetweenMarkers() {

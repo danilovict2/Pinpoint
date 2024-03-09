@@ -25,7 +25,8 @@ const emit = defineEmits(['toggleLoginModal', 'toggleRegisterModal']);
     justify-content: space-between;
     align-items: center;
     top: 0;
-    box-shadow: 0px 5px 10px rgb(0, 0, 0);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.479);
+    z-index: 10;
 }
 
 .about-us-btn {

@@ -1,13 +1,13 @@
 <template>
     <div class="result">
-        <Map style="height: 100%;" fit-bounds :center="guessPosition"
+        <Map style="width: 75%; height: 100%;" fit-bounds :center="guessPosition"
             :markers="[pair.startPositionMarker, pair.endPositionMarker]" :lines="[pair.lineBetweenMarkers]"></Map>
         <div class="details">
             <span class="round-count">Runda <strong style="color: #69686f;">{{ round }} / 5</strong> je završena</span>
-            Broj bodova u protekloj rundi:
+            Broj bodova u ovoj rundi:
             <span class="max-score"><span class="score">{{ score }}</span> / 5000</span>
             Razdaljina od tačne lokacije:
-            <span style="color: white;">5 km||m</span>
+            <span style="color: white;">razdaljina placeholder</span>
             <button class="continue-btn" @click="emit('roundEnd')">{{ round === 5 ? 'Prikaži rezultate' : 'Sledeća runda' }}</button>
         </div>
     </div>
@@ -42,8 +42,7 @@ const emit = defineEmits(['roundEnd']);
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 2;
-    width: 500px;
+    width: 25%;
     height: 100%;
     color: #78777c;
     filter: invert(1);
