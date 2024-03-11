@@ -5,15 +5,14 @@
                 <input type="email" placeholder="Email" required>
                 <input type="text" placeholder="Korisničko ime" required>
                 <div class="input-and-icon">
-                    <input type="password" placeholder="Lozinka" id="password" required>
-                    <i class="fa-solid fa-eye fa-lg" style="color: #ffffff;"></i>
+                    <input :type="isShowingPassword ? 'text' : 'password'" placeholder="Lozinka" id="password" required>
+                    <i class="fa-solid fa-lg" :class="isShowingPassword ? 'fa-eye-slash' : 'fa-eye'" style="color: #ffffff;" @click="isShowingPassword = !isShowingPassword"></i>
                 </div>
                 <div class="register-buttons">
                     <button class="register">NAPRAVI NALOG</button>
                 </div>
                 <div class="signup-section">
                     <h4 style="color: #9e9e9e; font-weight: 700;">Već imaš nalog? <span style="color: #338ad7; font-weight: 800; cursor: pointer;">Prijavi se</span></h4>
-                    
                 </div>
             </form>
         </div>
@@ -23,6 +22,8 @@
 <script setup>
 import { ref } from 'vue';
 import Modal from './Modal.vue';
+
+const isShowingPassword = ref(false);
 
 defineProps({
     modalActive: {
