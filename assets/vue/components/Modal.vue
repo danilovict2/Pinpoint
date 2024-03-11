@@ -1,17 +1,19 @@
 <template>
-    <transition name="modal-animation">
-        <div v-show="modalActive" class="modal">
-            <transition name="modal-animation-inner">
-                <div v-show="modalActive" class="modal-inner">
-                    <div class="close-icon">
-                        <h3 style="margin-top: 0px; height: 0px; font-weight: bold;">PINPOINT</h3>
-                        <i @click="emit('close')" class="fa-solid fa-xmark" style="cursor: pointer;"></i>
+    <Teleport to="body">
+        <transition name="modal-animation">
+            <div v-show="modalActive" class="modal">
+                <transition name="modal-animation-inner">
+                    <div v-show="modalActive" class="modal-inner">
+                        <div class="close-icon">
+                            <h3 style="margin-top: 0px; height: 0px; font-weight: bold;">PINPOINT</h3>
+                            <i @click="emit('close')" class="fa-solid fa-xmark" style="cursor: pointer;"></i>
+                        </div>
+                        <slot />
                     </div>
-                    <slot />
-                </div>
-            </transition>
-        </div>
-    </transition>
+                </transition>
+            </div>
+        </transition>
+    </Teleport>
 </template>
 
 <script setup>
