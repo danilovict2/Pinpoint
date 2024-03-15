@@ -11,9 +11,6 @@
                 <div class="register-buttons">
                     <button class="register">NAPRAVI NALOG</button>
                 </div>
-                <div class="signup-section">
-                    <h4 style="color: #9e9e9e; font-weight: 700;">Već imaš nalog? <span style="color: #338ad7; font-weight: 800; cursor: pointer;">Prijavi se</span></h4>
-                </div>
             </form>
         </div>
     </Modal>
@@ -95,12 +92,7 @@ button {
     border-radius: 5px;
     padding: 5px;
     width: 100%;
-}
-
-.signup-section {
-    display: flex;
-    justify-content: center;
-    margin-top: -10px;
+    margin-top: 20px;
 }
 
 .register {

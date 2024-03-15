@@ -1,6 +1,6 @@
 <template>
     <div class="navbar">
-        <button class="about-us-btn">O NAMA</button>
+        <div class="logo-spacer"></div>
         <img src="/img/logo.png" alt="logo" class="logo">
         <div class="login-signup">
             <button @click="emit('toggleLoginModal')" type="button" class="login">PRIJAVI SE</button>
@@ -29,30 +29,15 @@ const emit = defineEmits(['toggleLoginModal', 'toggleRegisterModal']);
     z-index: 10;
 }
 
-.about-us-btn {
-    font-weight: 550;
-    font-size: 15px;
-    letter-spacing: -0.5px;
-    color: #9e9e9e;
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
+.logo-spacer {
     padding: 10px;
     margin-left: 60px;
-    margin-right: 150px;
-    transition: 0.2s ease-in-out;
-}
-
-.about-us-btn:hover {
-    background-color: #3d4142b0;
-    border-radius: 5px;
-    transition: 0.2s ease-in-out;
+    margin-right: 180px;
 }
 
 .logo {
     font-size: 30px;
-    width: 400px;
+    width: 280px;
     height: 60px;
 
 }

@@ -8,10 +8,6 @@
                     <a href="#">Zaboravili ste lozinku?</a>
                     <button class="login">PRIJAVI SE</button>
                 </div>
-                <div class="signup-section">
-                    <h4 style="color: #9e9e9e; font-weight: 700;">Nemaš nalog? <span
-                            style="color: #338ad7; font-weight: 800; cursor: pointer;">Napravi nalog</span></h4>
-                </div>
             </form>
         </div>
     </Modal>
@@ -71,11 +67,6 @@ button {
     cursor: pointer;
     border-radius: 5px;
     padding: 5px;
-}
-
-.signup-section {
-    display: flex;
-    justify-content: center;
     margin-top: 20px;
 }
 
