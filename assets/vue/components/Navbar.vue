@@ -37,7 +37,7 @@ const emit = defineEmits(['toggleLoginModal', 'toggleRegisterModal']);
 
 .logo {
     font-size: 30px;
-    width: 280px;
+    width: 320px;
     height: 60px;
 
 }

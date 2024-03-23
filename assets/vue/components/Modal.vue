@@ -5,8 +5,10 @@
                 <transition name="modal-animation-inner">
                     <div v-show="modalActive" class="modal-inner">
                         <div class="close-icon">
-                            <h3 style="margin-top: 0px; height: 0px; font-weight: bold;">PINPOINT</h3>
-                            <i @click="emit('close')" class="fa-solid fa-xmark" style="cursor: pointer;"></i>
+                            <img src="/img/logo.png" style="width: 300px; margin-left: -50px;">
+                            <div @click="emit('close')" class="icon-circle">
+                                <i class="fa-solid fa-xmark" style="cursor: pointer;"></i>
+                            </div>
                         </div>
                         <slot />
                     </div>
@@ -25,11 +27,36 @@ const emit = defineEmits(['close']);
 </script>
 
 <style scoped>
+.icon-circle{
+    display: none;
+    background-color: none;
+    cursor: pointer;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1px;
+    padding-left: 1px;
+    transition: 0.2s;
+}
+
+.icon-circle:hover{
+    background-color: rgba(199, 199, 199, 0.27);
+    transition: 0.2s all ease-in;
+}
+.icon-circle:active{
+    background-color: rgba(255, 255, 255, 0.655);
+    transition: 0.1s all ease-in;
+} 
+
 .close-icon {
     display: flex;
     justify-content: space-between;
     padding: 20px;
     margin-right: 10px;
+    margin-top: 60px;
     font-size: 25px;
     color: white;
     align-items: center;

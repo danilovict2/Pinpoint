@@ -31,8 +31,9 @@
                     <h2>Standardna igra</h2>
                 </div>
             </div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eos porro impedit quo ea velit et dolore autem voluptatibus, repudiandae possimus quasi doloremque sit temporibus officia cupiditate corrupti animi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus accusamus dolores facere obcaecati ab porro reprehenderit odit non, vitae possimus explicabo delectus sunt at nihil? Quos corporis beatae voluptatibus nemo. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus animi vitae molestias quos, ullam adipisci atque porro nisi aliquid quia illo temporibus cumque sed, dignissimos nihil libero cum. Aliquam, dolor. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aut expedita est tempore veniam fugit deserunt laboriosam. Itaque quisquam reiciendis voluptate eligendi, tempore maxime laboriosam odio, quis saepe repellendus sed. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit totam et repudiandae. Nihil est excepturi a commodi, reiciendis odit, perferendis nam facilis animi fugiat corporis quod blanditiis unde minima. Atque. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores aspernatur saepe, ipsum tempore amet voluptas natus cupiditate voluptatibus officia, aperiam quidem incidunt modi iure quo eveniet, magni est sunt minus Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat, cum veniam facilis aliquam totam recusandae maiores sed impedit illo explicabo ut. Nam excepturi, architecto laboriosam earum necessitatibus delectus doloribus labore. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error temporibus debitis ea, quo adipisci nihil odio perferendis est amet assumenda quos earum sunt similique mollitia natus? Amet quisquam dolorum sapiente! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quidem fuga ducimus, numquam commodi enim eaque ea aspernatur. Rerum velit labore corrupti reiciendis perferendis animi iusto possimus consequuntur nam officia?
+            
         </div>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eos porro impedit quo ea velit et dolore autem voluptatibus, repudiandae possimus quasi doloremque sit temporibus officia cupiditate corrupti animi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus accusamus dolores facere obcaecati ab porro reprehenderit odit non, vitae possimus explicabo delectus sunt at nihil? Quos corporis beatae voluptatibus nemo. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus animi vitae molestias quos, ullam adipisci atque porro nisi aliquid quia illo temporibus cumque sed, dignissimos nihil libero cum. Aliquam, dolor. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aut expedita est tempore veniam fugit deserunt laboriosam. Itaque quisquam reiciendis voluptate eligendi, tempore maxime laboriosam odio, quis saepe repellendus sed. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit totam et repudiandae. Nihil est excepturi a commodi, reiciendis odit, perferendis nam facilis animi fugiat corporis quod blanditiis unde minima. Atque. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores aspernatur saepe, ipsum tempore amet voluptas natus cupiditate voluptatibus officia, aperiam quidem incidunt modi iure quo eveniet, magni est sunt minus Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat, cum veniam facilis aliquam totam recusandae maiores sed impedit illo explicabo ut. Nam excepturi, architecto laboriosam earum necessitatibus delectus doloribus labore. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error temporibus debitis ea, quo adipisci nihil odio perferendis est amet assumenda quos earum sunt similique mollitia natus? Amet quisquam dolorum sapiente! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quidem fuga ducimus, numquam commodi enim eaque ea aspernatur. Rerum velit labore corrupti reiciendis perferendis animi iusto possimus consequuntur nam officia?
 
         <LoginModal :modal-active="loginModalActive" @close="setLoginModalActive(false)"></LoginModal>
         <RegisterModal :modal-active="registerModalActive" @close="setRegisterModalActive(false)"></RegisterModal>
@@ -63,13 +64,22 @@ function setRegisterModalActive(isActive) {
 }
 
 .game-btns {
-    position: absolute;
     display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 20px;
 }
 
-.standard-game {
-    background-color: gray;
+.standard-game{
+    background-image: linear-gradient(to bottom, rgb(61, 203, 113), rgb(57, 155, 191));
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
 .middle-section-bg {
