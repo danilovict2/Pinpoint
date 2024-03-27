@@ -7,15 +7,26 @@ body {
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     font-style: normal;
-}
-
-h4{
-    font-weight: 400;
+    background-color: #2c3333;
+    overflow-x: hidden;
 }
 
 .gmnoprint a, .gmnoprint span, .gm-style-cc {
     display: none;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #2c3333;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background:#808585;
+    border-radius: 100px;
+  }
 
 @keyframes pop-in {
     0% { opacity: 0; transform: scale(0.1); }

@@ -1,6 +1,7 @@
 <template>
     <Modal @close="toggleModal" :modal-active="modalActive">
         <div class="modal-content">
+            <img src="/img/registracija.png" style="width: 320px; margin-top: -80px; margin-left: 20px; margin-right: -10px;">
             <form action="">
                 <input type="email" placeholder="Email" required>
                 <input type="text" placeholder="Korisničko ime" required>

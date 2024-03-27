@@ -5,7 +5,6 @@
                 <transition name="modal-animation-inner">
                     <div v-show="modalActive" class="modal-inner">
                         <div class="close-icon">
-                            <img src="/img/logo.png" style="width: 300px; margin-left: -50px;">
                             <div @click="emit('close')" class="icon-circle">
                                 <i class="fa-solid fa-xmark" style="cursor: pointer;"></i>
                             </div>
@@ -53,10 +52,11 @@ const emit = defineEmits(['close']);
 
 .close-icon {
     display: flex;
-    justify-content: space-between;
-    padding: 20px;
+    justify-content: right;
     margin-right: 10px;
-    margin-top: 60px;
+    margin-top: 100px;
+    padding-top: 40px;
+    padding-right: 15px;
     font-size: 25px;
     color: white;
     align-items: center;

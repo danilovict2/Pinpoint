@@ -8,33 +8,35 @@
             <div class="game-btns">
                 <div class="standard-game">
                     <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64"><defs><linearGradient id="a" x1="32" y1="53.1244" x2="32" y2="9.5674" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ce2857"/><stop offset="1" stop-color="#ce5a40"/></linearGradient></defs><path d="M32,10.0989A16.6349,16.6349,0,0,0,15.3651,26.7338c0,5.4373,2.7756,9.1825,5.9315,13.308l10.5418,13.85c.19.2471,3.66-4.3822,3.9544-4.7529q1.9962-2.5571,3.9543-5.1426c1.5494-2.0722,3.26-4.1064,4.7529-6.2642,2.3193-3.28,4.1349-6.7966,4.1349-10.9981A16.6349,16.6349,0,0,0,32,10.0989ZM32.01,33.93a7.6046,7.6046,0,1,1,7.6426-7.6045A7.6236,7.6236,0,0,1,32.01,33.93Z" fill="url(#a)"/><rect width="64" height="64" fill="none"/></svg>
+                        <i class="fa-solid fa-location-dot fa-2xl" style="color: #ffffff; font-size: 50px;"></i>
                     </span>
                     <h2>Standardna igra</h2>
                 </div>
-                <div class="standard-game">
+                <div class="country-game">
                     <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64"><defs><linearGradient id="a" x1="32" y1="53.1244" x2="32" y2="9.5674" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ce2857"/><stop offset="1" stop-color="#ce5a40"/></linearGradient></defs><path d="M32,10.0989A16.6349,16.6349,0,0,0,15.3651,26.7338c0,5.4373,2.7756,9.1825,5.9315,13.308l10.5418,13.85c.19.2471,3.66-4.3822,3.9544-4.7529q1.9962-2.5571,3.9543-5.1426c1.5494-2.0722,3.26-4.1064,4.7529-6.2642,2.3193-3.28,4.1349-6.7966,4.1349-10.9981A16.6349,16.6349,0,0,0,32,10.0989ZM32.01,33.93a7.6046,7.6046,0,1,1,7.6426-7.6045A7.6236,7.6236,0,0,1,32.01,33.93Z" fill="url(#a)"/><rect width="64" height="64" fill="none"/></svg>
+                        <i class="fa-solid fa-earth-americas" style="color: #ffffff; font-size: 50px;"></i>
                     </span>
-                    <h2>Standardna igra</h2>
+                    <h2>Pogodi državu</h2>
                 </div>
-                <div class="standard-game">
+                <div class="flag-game">
                     <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64"><defs><linearGradient id="a" x1="32" y1="53.1244" x2="32" y2="9.5674" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ce2857"/><stop offset="1" stop-color="#ce5a40"/></linearGradient></defs><path d="M32,10.0989A16.6349,16.6349,0,0,0,15.3651,26.7338c0,5.4373,2.7756,9.1825,5.9315,13.308l10.5418,13.85c.19.2471,3.66-4.3822,3.9544-4.7529q1.9962-2.5571,3.9543-5.1426c1.5494-2.0722,3.26-4.1064,4.7529-6.2642,2.3193-3.28,4.1349-6.7966,4.1349-10.9981A16.6349,16.6349,0,0,0,32,10.0989ZM32.01,33.93a7.6046,7.6046,0,1,1,7.6426-7.6045A7.6236,7.6236,0,0,1,32.01,33.93Z" fill="url(#a)"/><rect width="64" height="64" fill="none"/></svg>
+                        <i class="fa-solid fa-flag fa-2xl" style="color: #ffffff; font-size: 45px;"></i>
                     </span>
-                    <h2>Standardna igra</h2>
-                </div>
-                <div class="standard-game">
-                    <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64"><defs><linearGradient id="a" x1="32" y1="53.1244" x2="32" y2="9.5674" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ce2857"/><stop offset="1" stop-color="#ce5a40"/></linearGradient></defs><path d="M32,10.0989A16.6349,16.6349,0,0,0,15.3651,26.7338c0,5.4373,2.7756,9.1825,5.9315,13.308l10.5418,13.85c.19.2471,3.66-4.3822,3.9544-4.7529q1.9962-2.5571,3.9543-5.1426c1.5494-2.0722,3.26-4.1064,4.7529-6.2642,2.3193-3.28,4.1349-6.7966,4.1349-10.9981A16.6349,16.6349,0,0,0,32,10.0989ZM32.01,33.93a7.6046,7.6046,0,1,1,7.6426-7.6045A7.6236,7.6236,0,0,1,32.01,33.93Z" fill="url(#a)"/><rect width="64" height="64" fill="none"/></svg>
-                    </span>
-                    <h2>Standardna igra</h2>
+                    <h2>Zastave sveta</h2>
                 </div>
             </div>
             
         </div>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eos porro impedit quo ea velit et dolore autem voluptatibus, repudiandae possimus quasi doloremque sit temporibus officia cupiditate corrupti animi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus accusamus dolores facere obcaecati ab porro reprehenderit odit non, vitae possimus explicabo delectus sunt at nihil? Quos corporis beatae voluptatibus nemo. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus animi vitae molestias quos, ullam adipisci atque porro nisi aliquid quia illo temporibus cumque sed, dignissimos nihil libero cum. Aliquam, dolor. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aut expedita est tempore veniam fugit deserunt laboriosam. Itaque quisquam reiciendis voluptate eligendi, tempore maxime laboriosam odio, quis saepe repellendus sed. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit totam et repudiandae. Nihil est excepturi a commodi, reiciendis odit, perferendis nam facilis animi fugiat corporis quod blanditiis unde minima. Atque. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores aspernatur saepe, ipsum tempore amet voluptas natus cupiditate voluptatibus officia, aperiam quidem incidunt modi iure quo eveniet, magni est sunt minus Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat, cum veniam facilis aliquam totam recusandae maiores sed impedit illo explicabo ut. Nam excepturi, architecto laboriosam earum necessitatibus delectus doloribus labore. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error temporibus debitis ea, quo adipisci nihil odio perferendis est amet assumenda quos earum sunt similique mollitia natus? Amet quisquam dolorum sapiente! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quidem fuga ducimus, numquam commodi enim eaque ea aspernatur. Rerum velit labore corrupti reiciendis perferendis animi iusto possimus consequuntur nam officia?
-
+        <div class="bottom-section">
+            <div class="about-us">
+                <h1>ŠTA JE PINPOINT?</h1>
+                <p class="about-us-content">
+                    Pinpoint je zabavna i edukativna geografska igra koja pruža igračima jedinstveno iskustvo istraživanja sveta kroz Google Street View. U ovoj igri, igrači su nasumično spušteni na različite lokacije širom sveta, gde se mogu kretati kroz panoramske prikaze ulica i istraživati okolinu. <br>Cilj igre je da igrači koriste vizuelne informacije koje prikazuju ulice, zgrade, pejzaži i ostali detalji kako bi identifikovali gde se nalaze na svetskoj mapi.Igrači mogu koristiti različite tehnike i strategije kako bi pokušali da odrede svoju tačnu lokaciju. To može uključivati prepoznavanje poznatih znamenitosti, jezičkih znakova, tipične arhitekture ili geografskih karakteristika određene regije. Nakon što igrači donesu svoje zaključke, mogu postaviti oznaku na mapi kao njihovu zvaničnu procenu. <br><br>Ova igra ne samo što pruža zabavu i izazov, već takođe može biti korisna za poboljšanje geografskog znanja i sposobnosti opažanja detalja. Kroz istraživanje različitih delova sveta, igrači mogu naučiti o različitim kulturama, geografskim karakteristikama i znamenitostima, što ih čini bolje informisanim o globalnoj geografiji.
+                </p>
+            </div>
+            
+        </div>
+        <img src="/img/map-photo.png" style="float: right;margin-top: -600px; margin-right: -180px; transform: rotate(-10deg);">
         <LoginModal :modal-active="loginModalActive" @close="setLoginModalActive(false)"></LoginModal>
         <RegisterModal :modal-active="registerModalActive" @close="setRegisterModalActive(false)"></RegisterModal>
     </div>
@@ -72,19 +74,92 @@ function setRegisterModalActive(isActive) {
     gap: 20px;
 }
 
+i{
+    border: 1px solid white;
+    border-radius: 100%;
+    padding: 50px;
+    width: 10px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.standard-game:hover, 
+.country-game:hover, 
+.flag-game:hover{
+    transform: scale(1.1);
+    transition: 0.2s ease-in-out;
+}
+
 .standard-game{
-    background-image: linear-gradient(to bottom, rgb(61, 203, 113), rgb(57, 155, 191));
+    background-image: linear-gradient(to bottom, rgb(57, 210, 113), rgb(30, 141, 182));
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    width: 200px;
+    height: 220px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.2s ease-in-out;
+}
+
+.country-game{
+    background-image: linear-gradient(to bottom, rgb(45, 113, 197), rgb(112, 61, 179));
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 220px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.2s ease-in-out;
+}
+
+.flag-game{
+    background-image: linear-gradient(to bottom, rgb(183, 177, 56), rgb(191, 80, 80));
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 220px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.2s ease-in-out;
 }
 
 .middle-section-bg {
     width: 100%;
     height: 800px;
     object-fit: cover;
+    box-shadow: 0px 20px 23px -6px rgba(26, 26, 26, 0.68);
+}
+
+.bottom-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0px;
+}
+
+p{
+    font-size: 23px;
+}
+
+h1{
+    text-align: center;
+    font-weight: bold;
+    border: none;
+}
+
+.about-us{
+    color: white;
+    width: 50%;
 }
 </style>

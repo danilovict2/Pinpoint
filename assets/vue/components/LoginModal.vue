@@ -1,11 +1,12 @@
 <template>
     <Modal @close="emit('close')" :modal-active="modalActive">
         <div class="modal-content">
+            <img src="/img/prijava.png" style="width: 220px; margin-top: -80px; margin-left: 20px">
             <form action="">
                 <input type="email" placeholder="Email" required>
                 <input type="password" placeholder="Lozinka" required>
                 <div class="login-buttons">
-                    <a href="#">Zaboravili ste lozinku?</a>
+                    <a href="#" class="forgot-password">Zaboravili ste lozinku?</a>
                     <button class="login">PRIJAVI SE</button>
                 </div>
             </form>
@@ -68,6 +69,15 @@ button {
     border-radius: 5px;
     padding: 5px;
     margin-top: 20px;
+}
+
+.forgot-password{
+    transition: 0.2s ease-in-out;
+}
+
+.forgot-password:hover{
+    color: #338ad7;
+    transition: 0.2s ease-in-out;
 }
 
 .login {

@@ -32,7 +32,7 @@ const emit = defineEmits(['toggleLoginModal', 'toggleRegisterModal']);
 .logo-spacer {
     padding: 10px;
     margin-left: 60px;
-    margin-right: 180px;
+    margin-right: 270px;
 }
 
 .logo {
@@ -72,5 +72,9 @@ const emit = defineEmits(['toggleLoginModal', 'toggleRegisterModal']);
     background-color: #338ad7;
     border: none;
     transition: 0.2s ease-in-out;
+}
+
+.login:hover{
+    background-color: #1f71b9;
 }
 </style>
