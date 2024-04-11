@@ -36,7 +36,7 @@
             </div>
             
         </div>
-        <img src="/img/map-photo.png" style="float: right;margin-top: -600px; margin-right: -180px; transform: rotate(-10deg);">
+        <img src="/img/map-photo.png" class="map-photo">
         <LoginModal :modal-active="loginModalActive" @close="setLoginModalActive(false)"></LoginModal>
         <RegisterModal :modal-active="registerModalActive" @close="setRegisterModalActive(false)"></RegisterModal>
     </div>
@@ -148,8 +148,39 @@ i{
     margin-top: 0px;
 }
 
-p{
-    font-size: 23px;
+.map-photo{
+    float: right;
+    margin-top: -600px;
+    margin-right: -180px;
+    transform: rotate(-10deg);
+}
+
+@media screen and (max-width: 1500px) {
+    .map-photo{
+        margin-right: -300px;
+    }
+}
+
+@media screen and (max-width: 1125px) {
+    .map-photo{
+        display: none;
+    }
+
+    .about-us{
+        font-size: 25px;
+    }
+
+    p{
+        font-size: 40px;
+        width: 150%;
+        margin-left: -100px;
+    }
+}
+
+@media screen and (min-width: 1125px) {
+    p{
+        font-size: 23px;
+    }
 }
 
 h1{

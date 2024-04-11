@@ -40,7 +40,7 @@ game.guesses.forEach((markerPair) => {
     display: flex;
     flex-direction: column;
     flex: .8;
-    background-image: url(https://geotastic.b-cdn.net/app_assets/result-background-right.jpg);
+    background-image: url('https://geotastic.b-cdn.net/app_assets/result-background-right.jpg');
     background-position: top center;
     background-size: cover;
     min-width: 500px;

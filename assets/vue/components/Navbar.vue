@@ -32,7 +32,7 @@ const emit = defineEmits(['toggleLoginModal', 'toggleRegisterModal']);
 .logo-spacer {
     padding: 10px;
     margin-left: 60px;
-    margin-right: 270px;
+    margin-right: 240px;
 }
 
 .logo {
