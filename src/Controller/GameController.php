@@ -13,4 +13,10 @@ class GameController extends AbstractController
     {
         return $this->render('game/index.html.twig');
     }
+
+    #[Route('/test-map')]
+    public function testMap(): Response
+    {
+        return $this->render('game/map.html.twig');
+    }
 }
