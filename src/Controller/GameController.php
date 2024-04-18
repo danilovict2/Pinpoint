@@ -6,11 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class MapController extends AbstractController
+class GameController extends AbstractController
 {
-    #[Route('/map', name: 'app_map')]
-    public function index(): Response
+    #[Route('/play', name: 'game_play')]
+    public function play(): Response
     {
-        return $this->render('map/index.html.twig');
+        return $this->render('game/index.html.twig');
     }
 }
