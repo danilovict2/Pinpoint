@@ -32,7 +32,7 @@ const { zoom, center, markers, lines, fitBounds, polygons } = defineProps({
 });
 
 const mapDiv = ref(null);
-const emit = defineEmits(['addMarker']);
+const emit = defineEmits(['mapClick']);
 
 onMounted(() => {
     const map = new google.maps.Map(
@@ -47,7 +47,7 @@ onMounted(() => {
         }
     );
 
-    map.addListener("click", e => emit('addMarker', e.latLng, map));
+    map.addListener("click", e => emit('mapClick', e.latLng, map));
 
     for (let marker of markers) {
         marker.setMap(map);

@@ -1,6 +1,6 @@
 <template>
     <div class="guess-area">
-        <Map @add-marker="setCurrentMarker" @keyup.space="guessButton.click()"></Map>
+        <Map @map-click="setCurrentMarker" @keyup.space="guessButton.click()"></Map>
     </div>
     <div class="container">
         <div class="round-details">
