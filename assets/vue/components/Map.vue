@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-const { zoom, center, markers, lines, fitBounds } = defineProps({
+const { zoom, center, markers, lines, fitBounds, polygons } = defineProps({
     zoom: {
         type: Number,
         default: 1
@@ -24,6 +24,10 @@ const { zoom, center, markers, lines, fitBounds } = defineProps({
     fitBounds: {
         type: Boolean,
         default: false
+    },
+    polygons: {
+        type: Array,
+        default: []
     }
 });
 
@@ -59,6 +63,10 @@ onMounted(() => {
             bounds.extend(marker.position);
         }
         map.fitBounds(bounds);
+    }
+
+    for (let polyogn of polygons) {
+        polyogn.setMap(map);
     }
 });
 </script>
