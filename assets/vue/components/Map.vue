@@ -3,6 +3,7 @@
 </template>
 
 <script setup>
+import axios from 'axios';
 import { ref, onMounted } from 'vue';
 const { zoom, center, markers, lines, fitBounds, polygons } = defineProps({
     zoom: {
@@ -47,8 +48,16 @@ onMounted(() => {
         }
     );
 
-    map.addListener("click", e => emit('mapClick', e.latLng, map));
-
+    map.addListener("click", e => {
+        axios.post('/reverse-geocode', null, {
+            params: {
+                lat: e.latLng.lat(),
+                lng: e.latLng.lng(),
+            }
+        })
+            .then(result => emit('mapClick', e.latLng, map, result.data.country))
+            .catch(error => emit('mapClick', e.latLng, map, ''));
+        });
     for (let marker of markers) {
         marker.setMap(map);
     }
