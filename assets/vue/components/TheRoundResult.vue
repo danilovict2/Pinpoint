@@ -7,7 +7,7 @@
             Broj bodova u ovoj rundi:
             <span class="max-score"><span class="score">{{ score }}</span> / 5000</span>
             Razdaljina od tačne lokacije:
-            <span style="color: white;">razdaljina placeholder</span>
+            <span style="color: white;">{{ distance > 1 ? Math.round(distance) + 'km' : Math.round(distance * 1000) + 'm' }}</span>
             <button class="continue-btn" @click="emit('roundEnd')">{{ round === 5 ? 'Prikaži rezultate' : 'Sledeća runda' }}</button>
         </div>
     </div>
@@ -17,9 +17,10 @@
 import { game } from '../stores/game.js';
 import MarkerPair from '../services/MarkerPair.js';
 import Map from './Map.vue';
-const { score, startPosition, guessPosition, round } = defineProps({
+const { startPosition, guessPosition } = defineProps({
     round: Number,
     score: Number,
+    distance: Number,
     startPosition: Object,
     guessPosition: Object,
 });

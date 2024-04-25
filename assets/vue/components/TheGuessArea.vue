@@ -6,7 +6,7 @@
         <div class="container">
             <div class="round-details">
                 <div class="box">
-                    <h4>Mapa:<br> Placeholder</h4>
+                    <h4>Mapa:<br> Svet</h4>
                 </div>
                 <div class="box round">
                     <h4>Runda:<br> {{ round }}/5</h4>
@@ -70,7 +70,7 @@ function guess() {
     // Distance is the radius * angular distance
     const distance = (radius * c) / 1000;
     const score = Math.round(5000 * Math.exp(-0.5 * (distance / 2000) ** 2));
-    emit('guessed', score, { lat: position.lat(), lng: position.lng() });
+    emit('guessed', score, { lat: position.lat(), lng: position.lng() }, distance);
 }
 </script>
 
