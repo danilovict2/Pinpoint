@@ -6,7 +6,7 @@
             <div class="player-scores">
                 <h1>1</h1> <div class="name-and-score">Ime <strong style="color: #43a047;">{{ score }}</strong></div>
             </div>
-            <button class="play-again-btn">IGRAJ PONOVO</button>
+            <button class="play-again-btn" @click="playAgain">IGRAJ PONOVO</button>
             <a href="/"><button class="back-to-menu-btn">POVRATAK NA POČETNI MENI</button></a>
         </div>
     </div>
@@ -27,6 +27,10 @@ game.guesses.forEach((markerPair) => {
     markers.push(markerPair.endPositionMarker);
     lines.push(markerPair.lineBetweenMarkers);
 });
+
+const playAgain = () => {
+    location.reload();
+};
 </script>
 
 <style>
