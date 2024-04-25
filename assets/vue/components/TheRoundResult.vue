@@ -1,13 +1,14 @@
 <template>
     <div class="result">
         <Map style="width: 75%; height: 100%;" fit-bounds :center="guessPosition"
-            :markers="[pair.startPositionMarker, pair.endPositionMarker]" :lines="[pair.lineBetweenMarkers]"></Map>
+            :markers="markers" :lines="lines"></Map>
         <div class="details">
             <span class="round-count">Runda <strong style="color: #69686f;">{{ round }} / 5</strong> je završena</span>
             Broj bodova u ovoj rundi:
             <span class="max-score"><span class="score">{{ score }}</span> / 5000</span>
             Razdaljina od tačne lokacije:
-            <span style="color: white;">{{ distance > 1 ? Math.round(distance) + 'km' : Math.round(distance * 1000) + 'm' }}</span>
+            <span style="color: white;" v-if="distance === -1">-</span>
+            <span style="color: white;" v-else>{{ distance > 1 ? Math.round(distance) + 'km' : Math.round(distance * 1000) + 'm' }}</span>
             <button class="continue-btn" @click="emit('roundEnd')">{{ round === 5 ? 'Prikaži rezultate' : 'Sledeća runda' }}</button>
         </div>
     </div>
@@ -27,6 +28,14 @@ const { startPosition, guessPosition } = defineProps({
 
 const pair = new MarkerPair(startPosition, guessPosition);
 game.guesses.push(pair);
+
+const markers = [pair.startPositionMarker];
+const lines = [];
+
+if (Object.keys(guessPosition).length !== 0) {
+    markers.push(pair.endPositionMarker);
+    lines.push(pair.lineBetweenMarkers);
+}
 
 const emit = defineEmits(['roundEnd']);
 </script>

@@ -6,7 +6,7 @@
         <div class="container">
             <div class="round-details">
                 <div class="box">
-                    <h4>Mapa:<br> Svet</h4>
+                    <h4>Mapa:<br> Širom Sveta</h4>
                 </div>
                 <div class="box round">
                     <h4>Runda:<br> {{ round }}/5</h4>
@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref, watchEffect } from 'vue';
 import Map from './Map.vue';
 import { useTimer } from 'vue-timer-hook';
 const { startPosition } = defineProps({
@@ -72,6 +72,15 @@ function guess() {
     const score = Math.round(5000 * Math.exp(-0.5 * (distance / 2000) ** 2));
     emit('guessed', score, { lat: position.lat(), lng: position.lng() }, distance);
 }
+
+onMounted(() => {   
+    watchEffect(() => {
+        if (timer.isExpired.value) {
+            if (currentMarker) guess();
+            else emit('guessed', 0, {}, -1);
+        }
+    });
+});
 </script>
 
 <style scoped>

@@ -5,11 +5,15 @@ export default class MarkerPair {
     }
 
     get startPositionMarker() {
-        return new google.maps.Marker({ position: this._startPosition, icon: URL = "./img/target-marker.png" });
+        if (Object.keys(this._startPosition).length !== 0) 
+            return new google.maps.Marker({ position: this._startPosition, icon: URL = "./img/target-marker.png" });
+        return {};    
     }
 
     get endPositionMarker() {
-        return new google.maps.Marker({ position: this._endPosition, icon: URL = "./img/player-marker.png" });
+        if (Object.keys(this._endPosition).length !== 0)
+            return new google.maps.Marker({ position: this._endPosition, icon: URL = "./img/player-marker.png" });
+        return {};    
     }
 
     get lineBetweenMarkers() {
