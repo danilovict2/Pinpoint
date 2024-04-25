@@ -68,7 +68,27 @@ function pickStartPosition() {
         { lat: 46.109345, lng: 19.668796 } /*majsanski most*/,
         { lat: 45.431228, lng: 12.333307 } /*venice*/,
         { lat: 43.772783, lng: 11.253926 } /*firenze*/,
-
+        { lat: 41.402324, lng: 2.173871 } /*sagrada familia*/,
+        { lat: 46.111197, lng: 19.690303 } /*damirova kuca*/,
+        { lat: 63.436578, lng: 10.445091 } /*north norway*/,
+        { lat: 55.497638, lng: 9.023594  } /*mid denmark*/,
+        { lat: 7.304851, lng: 8.784849  } /*south nigeria*/,
+        { lat: 0.100577, lng: 37.564418  } /*mid kenya*/,
+        { lat: 55.751672, lng: 37.622761  } /*moscow*/,
+        { lat: 31.306725, lng: 34.788542 } /*israel*/,
+        { lat: 14.536699, lng: -16.731669 } /*senegal*/,
+        { lat: -27.430130, lng: 23.425565 } /*botswana*/,
+        { lat: 9.226803, lng: -78.883737 } /*panama*/,
+        { lat: 4.721541, lng: -74.041779 } /*bogota*/,
+        { lat: 22.161356, lng: -100.956237 } /*san luis mexico*/,
+        { lat: 32.787682, lng: -96.800156 } /*dallas*/,
+        { lat: 29.956409, lng: -90.063351 } /*new orleans*/,
+        { lat: 64.054864, lng: -21.494411 } /*iceland*/,
+        { lat: 28.602995, lng: 77.082660 } /*new delhi*/,
+        { lat: 13.770791, lng: 100.565907 } /*bangkok*/,
+        { lat: 56.233422, lng: 92.159842 } /*siberia*/,
+        { lat: 36.359045, lng: 127.423773 } /*daejeon south korea*/,
+        { lat: 34.687419, lng: 135.523136 } /*osaka*/,
     ];
 
     return places[Math.floor(Math.random() * (places.length))];
