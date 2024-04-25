@@ -12,7 +12,7 @@
                     <h4>Runda:<br> {{ round }}/5</h4>
                 </div>
                 <div style="padding: 0px 10px;">
-                    <h4>Vreme:<br> <span>{{ timer.minutes }}</span>:<span>{{ timer.seconds }}</span></h4>
+                    <h4>Vreme:<br> <span>{{ timer.minutes }}</span>:<span>{{ timer.seconds.value < 10 ? '0' : '' }}{{ timer.seconds }}</span></h4>
                 </div>
             </div>
             <button :disabled="!isGuessable" @click="guess" ref="guessButton">Pogodi</button>
