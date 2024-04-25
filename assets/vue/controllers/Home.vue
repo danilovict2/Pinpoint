@@ -6,12 +6,12 @@
         <div class="middle-section">
             <img src="/img/homepage-bg.jpg" class="middle-section-bg" alt="">
             <div class="game-btns">
-                <div class="standard-game">
+                <a class="standard-game" href="/play">
                     <span>
                         <i class="fa-solid fa-location-dot fa-2xl" style="color: #ffffff; font-size: 50px;"></i>
                     </span>
                     <h2>Standardna igra</h2>
-                </div>
+                </a>
                 <div class="country-game">
                     <span>
                         <i class="fa-solid fa-earth-americas" style="color: #ffffff; font-size: 50px;"></i>
@@ -104,6 +104,7 @@ i{
     cursor: pointer;
     border-radius: 10px;
     transition: 0.2s ease-in-out;
+    text-decoration: none;
 }
 
 .country-game{

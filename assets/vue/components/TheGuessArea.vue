@@ -1,25 +1,27 @@
 <template>
     <div class="guess-area">
-        <Map @add-marker="setCurrentMarker" @keyup.space="guessButton.click()"></Map>
-    </div>
-    <div class="container">
-        <div class="round-details">
-            <div class="box">
-                <h4>Mapa:<br> Placeholder</h4>
-            </div>
-            <div class="box round">
-                <h4>Runda:<br> {{ round }}/5</h4>
-            </div>
-            <div style="padding: 0px 10px;">
-                <h4>Vreme:<br> <span>{{ timer.minutes }}</span>:<span>{{ timer.seconds }}</span></h4>
-            </div>
+        <div class="map-area">
+            <Map @map-click="setCurrentMarker" @keyup.space="guessButton.click()"></Map>
         </div>
-        <button :disabled="!isGuessable" @click="guess" ref="guessButton">Pogodi</button>
+        <div class="container">
+            <div class="round-details">
+                <div class="box">
+                    <h4>Mapa:<br> Širom Sveta</h4>
+                </div>
+                <div class="box round">
+                    <h4>Runda:<br> {{ round }}/5</h4>
+                </div>
+                <div style="padding: 0px 10px;">
+                    <h4>Vreme:<br> <span>{{ timer.minutes }}</span>:<span>{{ timer.seconds.value < 10 ? '0' : '' }}{{ timer.seconds }}</span></h4>
+                </div>
+            </div>
+            <button :disabled="!isGuessable" @click="guess" ref="guessButton">Pogodi</button>
+        </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref, watchEffect } from 'vue';
 import Map from './Map.vue';
 import { useTimer } from 'vue-timer-hook';
 const { startPosition } = defineProps({
@@ -67,14 +69,27 @@ function guess() {
 
     // Distance is the radius * angular distance
     const distance = (radius * c) / 1000;
-    const score = Math.round(5000 * Math.exp(-0.5 * (distance / 2000)**2));
-    emit('guessed', score, { lat: position.lat(), lng: position.lng() });
+    const score = Math.round(5000 * Math.exp(-0.5 * (distance / 2000) ** 2));
+    emit('guessed', score, { lat: position.lat(), lng: position.lng() }, distance);
 }
+
+onMounted(() => {   
+    watchEffect(() => {
+        if (timer.isExpired.value) {
+            if (currentMarker) guess();
+            else emit('guessed', 0, {}, -1);
+        }
+    });
+});
 </script>
 
 <style scoped>
 .guess-area {
-    z-index: 2;
+    filter: invert(1);
+    z-index: 10;
+}
+
+.map-area {
     display: flex;
     flex-direction: column;
     width: 300px;
@@ -89,7 +104,7 @@ function guess() {
     margin-top: 100px;
 }
 
-.guess-area:hover{
+.map-area:hover {
     width: 640px;
     height: 700px;
     margin-bottom: -150px;
@@ -97,7 +112,8 @@ function guess() {
     transition-delay: 0s;
     margin-top: 0px;
 }
-.container{
+
+.container {
     display: flex;
     flex-direction: row;
     position: absolute;
@@ -105,15 +121,14 @@ function guess() {
     right: 3rem;
     gap: 20px;
     align-items: flex-start;
-    filter: invert(1);
     z-index: 2;
 }
 
-.round-details{
+.round-details {
     z-index: 2;
     width: 320px;
     background-color: #202020;
-    color:#ffff;
+    color: #ffff;
     display: flex;
     flex-direction: row;
     height: 55px;
@@ -123,20 +138,20 @@ function guess() {
     text-align: center;
 }
 
-h4{
+h4 {
     margin-top: 10px;
 }
 
-.round{
+.round {
     margin-left: -25px;
 }
 
-.box{
-    border-right: 1px solid rgba(255,255,255,.2);
+.box {
+    border-right: 1px solid rgba(255, 255, 255, .2);
     padding: 0px 18px;
 }
 
-button{
+button {
     z-index: 2;
     color: white;
     background-color: rgba(177, 177, 177, 0.675);
@@ -150,17 +165,17 @@ button{
     pointer-events: none;
 }
 
-button:enabled{
+button:enabled {
     background-color: #338ad7;
     opacity: 1;
     pointer-events: all;
 }
 
-button:hover:enabled{
+button:hover:enabled {
     background-color: #2e79bb;
 }
 
-button:hover:enabled:active{
+button:hover:enabled:active {
     background-color: #4d98d8;
     transition: 0.2s ease-in-out;
 }

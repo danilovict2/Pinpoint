@@ -1,13 +1,14 @@
 <template>
     <div class="result">
         <Map style="width: 75%; height: 100%;" fit-bounds :center="guessPosition"
-            :markers="[pair.startPositionMarker, pair.endPositionMarker]" :lines="[pair.lineBetweenMarkers]"></Map>
+            :markers="markers" :lines="lines"></Map>
         <div class="details">
             <span class="round-count">Runda <strong style="color: #69686f;">{{ round }} / 5</strong> je završena</span>
             Broj bodova u ovoj rundi:
             <span class="max-score"><span class="score">{{ score }}</span> / 5000</span>
             Razdaljina od tačne lokacije:
-            <span style="color: white;">razdaljina placeholder</span>
+            <span style="color: white;" v-if="distance === -1">-</span>
+            <span style="color: white;" v-else>{{ distance > 1 ? Math.round(distance) + 'km' : Math.round(distance * 1000) + 'm' }}</span>
             <button class="continue-btn" @click="emit('roundEnd')">{{ round === 5 ? 'Prikaži rezultate' : 'Sledeća runda' }}</button>
         </div>
     </div>
@@ -17,15 +18,24 @@
 import { game } from '../stores/game.js';
 import MarkerPair from '../services/MarkerPair.js';
 import Map from './Map.vue';
-const { score, startPosition, guessPosition, round } = defineProps({
+const { startPosition, guessPosition } = defineProps({
     round: Number,
     score: Number,
+    distance: Number,
     startPosition: Object,
     guessPosition: Object,
 });
 
 const pair = new MarkerPair(startPosition, guessPosition);
 game.guesses.push(pair);
+
+const markers = [pair.startPositionMarker];
+const lines = [];
+
+if (Object.keys(guessPosition).length !== 0) {
+    markers.push(pair.endPositionMarker);
+    lines.push(pair.lineBetweenMarkers);
+}
 
 const emit = defineEmits(['roundEnd']);
 </script>
@@ -35,7 +45,6 @@ const emit = defineEmits(['roundEnd']);
     position: relative;
     width: 100%;
     height: 100%;
-    filter: invert(1);
 }
 
 .details{
@@ -45,7 +54,6 @@ const emit = defineEmits(['roundEnd']);
     width: 25%;
     height: 100%;
     color: #78777c;
-    filter: invert(1);
     text-align: center;
     display: flex;
     flex-direction: column;

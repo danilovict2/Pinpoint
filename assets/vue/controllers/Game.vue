@@ -5,7 +5,7 @@
             <TheGuessArea :start-position="currentRoundStartPosition" :round="round" @guessed="handleGuess"></TheGuessArea>
         </ThePanorama>
         <TheRoundResult v-else :start-position="currentRoundStartPosition" :guess-position="currentRoundGuessPosition"
-            :score="roundScore" :round="round" @round-end="handleRoundEnd"></TheRoundResult>
+            :score="roundScore" :round="round" :distance="distanceFromGuess" @round-end="handleRoundEnd"></TheRoundResult>
     </div>
 </template>
 
@@ -21,6 +21,7 @@ const currentRoundStartPosition = ref(null);
 const currentRoundGuessPosition = ref(null);
 const round = ref(0);
 const isGameOver = ref(false);
+const distanceFromGuess = ref(0);
 let score = 0;
 startRound();
 
@@ -94,10 +95,11 @@ function pickStartPosition() {
     return places[Math.floor(Math.random() * (places.length))];
 }
 
-function handleGuess(rndScore, guessPosition) {
+function handleGuess(rndScore, guessPosition, distance) {
     roundScore.value = rndScore;
     currentRoundGuessPosition.value = guessPosition;
     score += rndScore;
+    distanceFromGuess.value = distance;
 }
 
 // UNCOMMENT WHEN NOT IN DEVELOPMENT

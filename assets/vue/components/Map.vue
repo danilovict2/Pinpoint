@@ -3,8 +3,9 @@
 </template>
 
 <script setup>
+import axios from 'axios';
 import { ref, onMounted } from 'vue';
-const { zoom, center, markers, lines, fitBounds } = defineProps({
+const { zoom, center, markers, lines, fitBounds, polygons } = defineProps({
     zoom: {
         type: Number,
         default: 1
@@ -24,11 +25,15 @@ const { zoom, center, markers, lines, fitBounds } = defineProps({
     fitBounds: {
         type: Boolean,
         default: false
+    },
+    polygons: {
+        type: Array,
+        default: []
     }
 });
 
 const mapDiv = ref(null);
-const emit = defineEmits(['addMarker']);
+const emit = defineEmits(['mapClick']);
 
 onMounted(() => {
     const map = new google.maps.Map(
@@ -43,8 +48,16 @@ onMounted(() => {
         }
     );
 
-    map.addListener("click", e => emit('addMarker', e.latLng, map));
-
+    map.addListener("click", e => {
+        axios.post('/reverse-geocode', null, {
+            params: {
+                lat: e.latLng.lat(),
+                lng: e.latLng.lng(),
+            }
+        })
+            .then(result => emit('mapClick', e.latLng, map, result.data.country))
+            .catch(error => emit('mapClick', e.latLng, map, ''));
+        });
     for (let marker of markers) {
         marker.setMap(map);
     }
@@ -60,6 +73,10 @@ onMounted(() => {
         }
         map.fitBounds(bounds);
     }
+
+    for (let polyogn of polygons) {
+        polyogn.setMap(map);
+    }
 });
 </script>
 
@@ -68,6 +85,5 @@ onMounted(() => {
     height: 550px;
     display: flex;
     flex-direction: column-reverse;
-    filter: invert(1);
 }
 </style>
