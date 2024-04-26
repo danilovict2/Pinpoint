@@ -6,25 +6,35 @@
         <div class="middle-section">
             <img src="/img/homepage-bg.jpg" class="middle-section-bg" alt="">
             <div class="game-btns">
-                <a class="standard-game" href="/play">
-                    <span>
-                        <i class="fa-solid fa-location-dot fa-2xl" style="color: #ffffff; font-size: 50px;"></i>
-                    </span>
-                    <h2>Standardna igra</h2>
-                </a>
-                <div class="country-game">
-                    <span>
-                        <i class="fa-solid fa-earth-americas" style="color: #ffffff; font-size: 50px;"></i>
-                    </span>
-                    <h2>Pogodi državu</h2>
+                <div class="locked-container"> <!--Da enableujes gamemode sklonis klasu locked-container-->
+                    <i class="fa-solid fa-lock" style="color: #ffffff; font-size: 70px; margin-right: -155px; margin-left: 50px; z-index: 5;"></i>
+                    <a class="standard-game locked" href="/play"><!--i ovde klasu locked-->
+                        <span>
+                            <i class="fa-solid fa-location-dot fa-2xl" style="color: #ffffff; font-size: 50px;"></i>
+                        </span>
+                        <h2>Standardna igra</h2>
+                    </a>
                 </div>
-                <div class="flag-game">
-                    <span>
-                        <i class="fa-solid fa-flag fa-2xl" style="color: #ffffff; font-size: 45px;"></i>
-                    </span>
-                    <h2>Zastave sveta</h2>
+                <div class="locked-container">
+                    <i class="fa-solid fa-lock" style="color: #ffffff; font-size: 70px; margin-right: -155px; margin-left: 50px; z-index: 5;"></i>
+                    <a class="country-game locked" href="#">
+                        <span>
+                            <i class="fa-solid fa-earth-americas" style="color: #ffffff; font-size: 50px;"></i>
+                        </span>
+                        <h2>Pogodi državu</h2>
+                    </a>
                 </div>
-            </div>
+                <div class="locked-container">
+                    <i class="fa-solid fa-lock" style="color: #ffffff; font-size: 70px; margin-right: -155px; margin-left: 50px; z-index: 5;"></i>
+                    <a class="flag-game locked" href="#">
+                        <span>
+                            <i class="fa-solid fa-flag fa-2xl" style="color: #ffffff; font-size: 45px;"></i>
+                        </span>
+                        <h2>Zastave sveta</h2>
+                    </a>
+                </div>
+        </div>
+
             
         </div>
         <div class="bottom-section">
@@ -90,6 +100,17 @@ i{
 .flag-game:hover{
     transform: scale(1.1);
     transition: 0.2s ease-in-out;
+}
+
+.locked-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.locked{
+    filter: blur(4px) grayscale(1);
+    pointer-events: none;
 }
 
 .standard-game{
