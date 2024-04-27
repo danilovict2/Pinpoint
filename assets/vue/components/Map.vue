@@ -55,7 +55,7 @@ onMounted(() => {
                 lng: e.latLng.lng(),
             }
         })
-            .then(result => emit('mapClick', e.latLng, map, result.data.country))
+            .then(result => emit('mapClick', e.latLng, map, result.data.address.country))
             .catch(error => emit('mapClick', e.latLng, map, ''));
         });
     for (let marker of markers) {

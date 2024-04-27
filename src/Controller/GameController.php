@@ -33,12 +33,13 @@ class GameController extends AbstractController
         $lat = $request->query->get('lat');
         $lng = $request->query->get('lng');
 
-        $response = $client->request('POST', 'https://api.exoapi.dev/reverse-geocoding', [
-            'auth_bearer' => $apiKey,
-            'headers' => [
-                'content_type' => 'application/json'
-            ],
-            'body' => ['lat' => $lat, 'lon' => $lng, 'locale' => 'en-GB']
+        $response = $client->request('GET', 'https://nominatim.openstreetmap.org/reverse', [
+            'query' => [
+                'lat' => $lat,
+                'lon' => $lng,
+                'format' => 'json',
+                'accept-language' => 'en-US'
+            ]
         ]);
 
         return new Response($response->getContent());
