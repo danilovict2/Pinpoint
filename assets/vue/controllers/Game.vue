@@ -73,8 +73,6 @@ function pickStartPosition() {
         { lat: 46.111197, lng: 19.690303 } /*damirova kuca*/,
         { lat: 63.436578, lng: 10.445091 } /*north norway*/,
         { lat: 55.497638, lng: 9.023594  } /*mid denmark*/,
-        { lat: 7.304851, lng: 8.784849  } /*south nigeria*/,
-        { lat: 0.100577, lng: 37.564418  } /*mid kenya*/,
         { lat: 55.751672, lng: 37.622761  } /*moscow*/,
         { lat: 31.306725, lng: 34.788542 } /*israel*/,
         { lat: 14.536699, lng: -16.731669 } /*senegal*/,
@@ -89,6 +87,8 @@ function pickStartPosition() {
         { lat: 56.233422, lng: 92.159842 } /*siberia*/,
         { lat: 36.359045, lng: 127.423773 } /*daejeon south korea*/,
         { lat: 34.687419, lng: 135.523136 } /*osaka*/,
+        { lat: 40.927263, lng: -5.617899 } /*salamanca spain*/,
+        { lat: 43.740257, lng: 7.429679 } /*monaco hairpin*/,
     ];
 
     return places[Math.floor(Math.random() * (places.length))];

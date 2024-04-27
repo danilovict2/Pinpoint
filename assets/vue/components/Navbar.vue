@@ -15,7 +15,7 @@ const emit = defineEmits(['toggleLoginModal', 'toggleRegisterModal']);
 </script>
 
 
-<style scoped>
+<style>
 .navbar {
     width: 100%;
     position: sticky;

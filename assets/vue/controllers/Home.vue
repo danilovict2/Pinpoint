@@ -5,38 +5,37 @@
 
         <div class="middle-section">
             <img src="/img/homepage-bg.jpg" class="middle-section-bg" alt="">
+            <div class="locked-msg">
+                    <h2>PRIJAVI SE ILI NAPRAVI NALOG</h2>
+                    <h4>Dobij pristup tri moda igranja - besplatno!</h4>
+                    <i class="fa-solid fa-lock" style="color: #ffffff; font-size: 60px; border: none; padding: 0px; margin-bottom: 80px;"></i>
+                    <div class="login-signup">
+                        <button @click="emit('toggleLoginModal')" type="button" class="login">PRIJAVI SE</button>
+                        <button @click="emit('toggleRegisterModal')" type="button" class="signup">NAPRAVI NALOG</button>
+                    </div>
+            </div>
             <div class="game-btns">
-                <div class="locked-container"> <!--Da enableujes gamemode sklonis klasu locked-container-->
-                    <i class="fa-solid fa-lock" style="color: #ffffff; font-size: 70px; margin-right: -155px; margin-left: 50px; z-index: 5;"></i>
-                    <a class="standard-game locked" href="/play"><!--i ovde klasu locked-->
-                        <span>
-                            <i class="fa-solid fa-location-dot fa-2xl" style="color: #ffffff; font-size: 50px;"></i>
-                        </span>
-                        <h2>Standardna igra</h2>
-                    </a>
-                </div>
-                <div class="locked-container">
-                    <i class="fa-solid fa-lock" style="color: #ffffff; font-size: 70px; margin-right: -155px; margin-left: 50px; z-index: 5;"></i>
-                    <a class="country-game locked" href="#">
-                        <span>
-                            <i class="fa-solid fa-earth-americas" style="color: #ffffff; font-size: 50px;"></i>
-                        </span>
-                        <h2>Pogodi državu</h2>
-                    </a>
-                </div>
-                <div class="locked-container">
-                    <i class="fa-solid fa-lock" style="color: #ffffff; font-size: 70px; margin-right: -155px; margin-left: 50px; z-index: 5;"></i>
-                    <a class="flag-game locked" href="#">
-                        <span>
-                            <i class="fa-solid fa-flag fa-2xl" style="color: #ffffff; font-size: 45px;"></i>
-                        </span>
-                        <h2>Zastave sveta</h2>
-                    </a>
-                </div>
+                <a class="standard-game locked" href="/play">
+                    <span>
+                        <i class="fa-solid fa-location-dot fa-2xl" style="color: #ffffff; font-size: 50px;"></i>
+                    </span>
+                    <h2>Standardna igra</h2>
+                </a>
+                <a class="country-game locked" href="#">
+                    <span>
+                        <i class="fa-solid fa-earth-americas" style="color: #ffffff; font-size: 50px;"></i>
+                    </span>
+                    <h2>Pogodi državu</h2>
+                </a>
+                <a class="flag-game locked" href="#">
+                    <span>
+                        <i class="fa-solid fa-flag fa-2xl" style="color: #ffffff; font-size: 45px;"></i>
+                    </span>
+                    <h2>Zastave sveta</h2>
+                </a>
+            </div>
         </div>
 
-            
-        </div>
         <div class="bottom-section">
             <div class="about-us">
                 <h1>ŠTA JE PINPOINT?</h1>
@@ -102,15 +101,34 @@ i{
     transition: 0.2s ease-in-out;
 }
 
-.locked-container{
+.locked-msg{
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+    width: 1000px;
+    height: 300px;
+    background-color: rgba(29, 29, 29, 0.887);
+    color: white;
+    font-weight: bold;
+    font-size: larger;
+    border-radius: 20px;
+    
 }
 
 .locked{
-    filter: blur(4px) grayscale(1);
+    filter: grayscale(1) blur(3px);
     pointer-events: none;
+}
+
+h4{
+    margin-top: -20px;
+    margin-bottom: 50px;
+    color: rgb(227, 227, 227);
 }
 
 .standard-game{
@@ -140,6 +158,7 @@ i{
     cursor: pointer;
     border-radius: 10px;
     transition: 0.2s ease-in-out;
+    text-decoration: none;
 }
 
 .flag-game{
@@ -154,6 +173,7 @@ i{
     cursor: pointer;
     border-radius: 10px;
     transition: 0.2s ease-in-out;
+    text-decoration: none;
 }
 
 .middle-section-bg {
