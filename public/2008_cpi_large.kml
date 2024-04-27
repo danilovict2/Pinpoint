@@ -5744,10 +5744,10 @@ Confidence interval: 6.5 - 7.2
   </outerBoundaryIs>
 </Polygon>
 </MultiGeometry></Placemark>
-<!-- USA-->
+<!-- United States-->
 <!-- 7.3 -->
 <Placemark>
-<name>USA</name><styleUrl>#defaultStyles</styleUrl>
+<name>United States</name><styleUrl>#defaultStyles</styleUrl>
 <description>
 CPI 2008 rank: 18<br />
 Score: 7.3<br />

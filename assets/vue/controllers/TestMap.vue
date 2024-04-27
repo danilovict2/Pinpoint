@@ -12,7 +12,7 @@ function changePolygonPaths(latLng, map, country) {
     for (let polygon of p) {
         polygon.setMap(null);
     }
-
+    
     const countryPolygonPaths = useCountry().countries.get(country);
     for (let polygonPath of countryPolygonPaths) {
         p.push(new google.maps.Polygon({

@@ -25,7 +25,6 @@ class GameController extends AbstractController
 
     #[Route('/reverse-geocode', name: 'game_reverse_geocode', methods: ['POST'])]
     public function reverseGeocode(
-        #[Autowire("%env(EXO_API_KEY)%")] string $apiKey,
         HttpClientInterface $client,
         Request $request
     ): Response
