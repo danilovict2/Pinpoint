@@ -1385,10 +1385,10 @@ Confidence interval: 1.9 - 3.0
   </outerBoundaryIs>
 </Polygon>
 </MultiGeometry></Placemark>
-<!-- Congo. Democratic Republic-->
+<!-- DRC -->
 <!-- 1.7 -->
 <Placemark>
-<name>Congo. Democratic Republic</name><styleUrl>#defaultStyles</styleUrl>
+<name>Democratic Republic of the Congo</name><styleUrl>#defaultStyles</styleUrl>
 <description>
 CPI 2008 rank: 171<br />
 Score: 1.7<br />
@@ -1409,10 +1409,10 @@ Confidence interval: 1.6 - 1.9
   </outerBoundaryIs>
 </Polygon>
 </MultiGeometry></Placemark>
-<!-- Congo. Republic-->
+<!-- Congo-Brazzaville-->
 <!-- 1.9 -->
 <Placemark>
-<name>Congo. Republic</name><styleUrl>#defaultStyles</styleUrl>
+<name>Congo-Brazzaville</name><styleUrl>#defaultStyles</styleUrl>
 <description>
 CPI 2008 rank: 158<br />
 Score: 1.9<br />
@@ -1574,10 +1574,10 @@ Confidence interval: 5.9 - 6.8
   </outerBoundaryIs>
 </Polygon>
 </MultiGeometry></Placemark>
-<!-- Czech Republic-->
+<!-- Czechia -->
 <!-- 5.2 -->
 <Placemark>
-<name>Czech Republic</name><styleUrl>#defaultStyles</styleUrl>
+<name>Czechia</name><styleUrl>#defaultStyles</styleUrl>
 <description>
 CPI 2008 rank: 45<br />
 Score: 5.2<br />
@@ -3332,10 +3332,10 @@ Confidence interval: 3.9 - 6.2
   </outerBoundaryIs>
 </Polygon>
 </MultiGeometry></Placemark>
-<!-- Macedonia-->
+<!-- North Macedonia -->
 <!-- 3.6 -->
 <Placemark>
-<name>Macedonia</name><styleUrl>#defaultStyles</styleUrl>
+<name>North Macedonia</name><styleUrl>#defaultStyles</styleUrl>
 <description>
 CPI 2008 rank: 72<br />
 Score: 3.6<br />
@@ -4694,10 +4694,10 @@ Confidence interval: 3.4 - 4.8
   </outerBoundaryIs>
 </Polygon>
 </MultiGeometry></Placemark>
-<!-- Sao Tome and Principe-->
+<!-- São Tomé and Príncipe -->
 <!-- 2.7 -->
 <Placemark>
-<name>Sao Tome and Principe</name><styleUrl>#defaultStyles</styleUrl>
+<name>São Tomé and Príncipe</name><styleUrl>#defaultStyles</styleUrl>
 <description>
 CPI 2008 rank: 121<br />
 Score: 2.7<br />
@@ -5174,10 +5174,10 @@ Confidence interval: 3.3 - 4.0
   </outerBoundaryIs>
 </Polygon>
 </MultiGeometry></Placemark>
-<!-- Swaziland-->
+<!-- Eswatini-->
 <!-- 3.6 -->
 <Placemark>
-<name>Swaziland</name><styleUrl>#defaultStyles</styleUrl>
+<name>Eswatini</name><styleUrl>#defaultStyles</styleUrl>
 <description>
 CPI 2008 rank: 72<br />
 Score: 3.6<br />
