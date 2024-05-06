@@ -12,35 +12,14 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class GameController extends AbstractController
 {
     #[Route('/play', name: 'game_play')]
-    public function play(): Response
+    public function play(Request $request): Response
     {
-        return $this->render('game/index.html.twig');
+        return $this->render('game/index.html.twig', ['mode' => $request->query->getString('mode')]);
     }
 
     #[Route('/test-map')]
     public function testMap(): Response
     {
         return $this->render('game/map.html.twig');
-    }
-
-    #[Route('/reverse-geocode', name: 'game_reverse_geocode', methods: ['POST'])]
-    public function reverseGeocode(
-        HttpClientInterface $client,
-        Request $request
-    ): Response
-    {
-        $lat = $request->query->get('lat');
-        $lng = $request->query->get('lng');
-
-        $response = $client->request('GET', 'https://nominatim.openstreetmap.org/reverse', [
-            'query' => [
-                'lat' => $lat,
-                'lon' => $lng,
-                'format' => 'json',
-                'accept-language' => 'en-US'
-            ]
-        ]);
-
-        return new Response($response->getContent());
     }
 }
