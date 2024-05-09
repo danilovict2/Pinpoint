@@ -49,7 +49,7 @@ onMounted(() => {
     );
 
     map.addListener("click", e => {
-        axios.post('/reverse-geocode', null, {
+        axios.post('/reverse', null, {
             params: {
                 lat: e.latLng.lat(),
                 lng: e.latLng.lng(),

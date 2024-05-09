@@ -5,45 +5,59 @@
 
         <div class="middle-section">
             <img src="/img/homepage-bg.jpg" class="middle-section-bg" alt="">
-            <div class="locked-msg">
-                    <h2>PRIJAVI SE ILI NAPRAVI NALOG</h2>
-                    <h4>Dobij pristup tri moda igranja - besplatno!</h4>
-                    <i class="fa-solid fa-lock" style="color: #ffffff; font-size: 60px; border: none; padding: 0px; margin-bottom: 80px;"></i>
-                    <div class="login-signup">
-                        <button @click="emit('toggleLoginModal')" type="button" class="login">PRIJAVI SE</button>
-                        <button @click="emit('toggleRegisterModal')" type="button" class="signup">NAPRAVI NALOG</button>
-                    </div>
+            <div class="locked-msg" style="display: none;">
+                <h2>PRIJAVI SE ILI NAPRAVI NALOG</h2>
+                <h4>Dobij pristup tri moda igranja - besplatno!</h4>
+                <i class="fa-solid fa-lock"
+                    style="color: #ffffff; font-size: 60px; border: none; padding: 0px; margin-bottom: 80px;"></i>
+                <div class="login-signup">
+                    <button @click="emit('toggleLoginModal')" type="button" class="login">PRIJAVI SE</button>
+                    <button @click="emit('toggleRegisterModal')" type="button" class="signup">NAPRAVI NALOG</button>
+                </div>
             </div>
-            <div class="game-btns">
-                <a class="standard-game locked" href="/play">
+            <form class="game-btns" action="/play">
+                <input type="hidden" name="mode" :value="mode">
+
+                <button class="standard-game" @click="mode = 'STANDARD'">
                     <span>
                         <i class="fa-solid fa-location-dot fa-2xl" style="color: #ffffff; font-size: 50px;"></i>
                     </span>
                     <h2>Standardna igra</h2>
-                </a>
-                <a class="country-game locked" href="#">
+                </button>
+                <button class="country-game" @click="mode = 'COUNTRY'">
                     <span>
                         <i class="fa-solid fa-earth-americas" style="color: #ffffff; font-size: 50px;"></i>
                     </span>
                     <h2>Pogodi državu</h2>
-                </a>
-                <a class="flag-game locked" href="#">
+                </button>
+                <button class="flag-game" @click="mode = 'FLAG'">
                     <span>
                         <i class="fa-solid fa-flag fa-2xl" style="color: #ffffff; font-size: 45px;"></i>
                     </span>
                     <h2>Zastave sveta</h2>
-                </a>
-            </div>
+                </button>
+            </form>
         </div>
 
         <div class="bottom-section">
             <div class="about-us">
                 <h1>ŠTA JE PINPOINT?</h1>
                 <p class="about-us-content">
-                    Pinpoint je zabavna i edukativna geografska igra koja pruža igračima jedinstveno iskustvo istraživanja sveta kroz Google Street View. U ovoj igri, igrači su nasumično spušteni na različite lokacije širom sveta, gde se mogu kretati kroz panoramske prikaze ulica i istraživati okolinu. <br>Cilj igre je da igrači koriste vizuelne informacije koje prikazuju ulice, zgrade, pejzaži i ostali detalji kako bi identifikovali gde se nalaze na svetskoj mapi.Igrači mogu koristiti različite tehnike i strategije kako bi pokušali da odrede svoju tačnu lokaciju. To može uključivati prepoznavanje poznatih znamenitosti, jezičkih znakova, tipične arhitekture ili geografskih karakteristika određene regije. Nakon što igrači donesu svoje zaključke, mogu postaviti oznaku na mapi kao njihovu zvaničnu procenu. <br><br>Ova igra ne samo što pruža zabavu i izazov, već takođe može biti korisna za poboljšanje geografskog znanja i sposobnosti opažanja detalja. Kroz istraživanje različitih delova sveta, igrači mogu naučiti o različitim kulturama, geografskim karakteristikama i znamenitostima, što ih čini bolje informisanim o globalnoj geografiji.
+                    Pinpoint je zabavna i edukativna geografska igra koja pruža igračima jedinstveno iskustvo
+                    istraživanja sveta kroz Google Street View. U ovoj igri, igrači su nasumično spušteni na različite
+                    lokacije širom sveta, gde se mogu kretati kroz panoramske prikaze ulica i istraživati okolinu.
+                    <br>Cilj igre je da igrači koriste vizuelne informacije koje prikazuju ulice, zgrade, pejzaži i
+                    ostali detalji kako bi identifikovali gde se nalaze na svetskoj mapi.Igrači mogu koristiti različite
+                    tehnike i strategije kako bi pokušali da odrede svoju tačnu lokaciju. To može uključivati
+                    prepoznavanje poznatih znamenitosti, jezičkih znakova, tipične arhitekture ili geografskih
+                    karakteristika određene regije. Nakon što igrači donesu svoje zaključke, mogu postaviti oznaku na
+                    mapi kao njihovu zvaničnu procenu. <br><br>Ova igra ne samo što pruža zabavu i izazov, već takođe
+                    može biti korisna za poboljšanje geografskog znanja i sposobnosti opažanja detalja. Kroz
+                    istraživanje različitih delova sveta, igrači mogu naučiti o različitim kulturama, geografskim
+                    karakteristikama i znamenitostima, što ih čini bolje informisanim o globalnoj geografiji.
                 </p>
             </div>
-            
+
         </div>
         <img src="/img/map-photo.png" class="map-photo">
         <LoginModal :modal-active="loginModalActive" @close="setLoginModalActive(false)"></LoginModal>
@@ -59,6 +73,7 @@ import Navbar from '../components/Navbar.vue';
 
 const loginModalActive = ref(false);
 const registerModalActive = ref(false);
+const mode = ref('');
 
 function setLoginModalActive(isActive) {
     loginModalActive.value = isActive;
@@ -83,7 +98,7 @@ function setRegisterModalActive(isActive) {
     gap: 20px;
 }
 
-i{
+i {
     border: 1px solid white;
     border-radius: 100%;
     padding: 50px;
@@ -94,14 +109,14 @@ i{
     justify-content: center;
 }
 
-.standard-game:hover, 
-.country-game:hover, 
-.flag-game:hover{
+.standard-game:hover,
+.country-game:hover,
+.flag-game:hover {
     transform: scale(1.1);
     transition: 0.2s ease-in-out;
 }
 
-.locked-msg{
+.locked-msg {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -117,21 +132,25 @@ i{
     font-weight: bold;
     font-size: larger;
     border-radius: 20px;
-    
+
 }
 
-.locked{
+.locked {
     filter: grayscale(1) blur(3px);
     pointer-events: none;
 }
 
-h4{
+h4 {
     margin-top: -20px;
     margin-bottom: 50px;
     color: rgb(227, 227, 227);
 }
 
-.standard-game{
+.game-btns button {
+    border: 0;
+}
+
+.standard-game {
     background-image: linear-gradient(to bottom, rgb(57, 210, 113), rgb(30, 141, 182));
     color: white;
     display: flex;
@@ -146,7 +165,7 @@ h4{
     text-decoration: none;
 }
 
-.country-game{
+.country-game {
     background-image: linear-gradient(to bottom, rgb(45, 113, 197), rgb(112, 61, 179));
     color: white;
     display: flex;
@@ -161,7 +180,7 @@ h4{
     text-decoration: none;
 }
 
-.flag-game{
+.flag-game {
     background-image: linear-gradient(to bottom, rgb(183, 177, 56), rgb(191, 80, 80));
     color: white;
     display: flex;
@@ -183,14 +202,14 @@ h4{
     box-shadow: 0px 20px 23px -6px rgba(26, 26, 26, 0.68);
 }
 
-.bottom-section{
+.bottom-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 0px;
 }
 
-.map-photo{
+.map-photo {
     float: right;
     margin-top: -600px;
     margin-right: -180px;
@@ -198,21 +217,21 @@ h4{
 }
 
 @media screen and (max-width: 1500px) {
-    .map-photo{
+    .map-photo {
         margin-right: -300px;
     }
 }
 
 @media screen and (max-width: 1125px) {
-    .map-photo{
+    .map-photo {
         display: none;
     }
 
-    .about-us{
+    .about-us {
         font-size: 25px;
     }
 
-    p{
+    p {
         font-size: 40px;
         width: 150%;
         margin-left: -100px;
@@ -220,18 +239,18 @@ h4{
 }
 
 @media screen and (min-width: 1125px) {
-    p{
+    p {
         font-size: 23px;
     }
 }
 
-h1{
+h1 {
     text-align: center;
     font-weight: bold;
     border: none;
 }
 
-.about-us{
+.about-us {
     color: white;
     width: 50%;
 }

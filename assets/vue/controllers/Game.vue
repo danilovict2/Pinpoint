@@ -1,11 +1,21 @@
 <template>
     <TheFinalResults v-if="isGameOver" :score="score"></TheFinalResults>
     <div class="game" style="height: 100%;" v-else>
-        <ThePanorama :start-position="currentRoundStartPosition" v-if="roundScore === null">
-            <TheGuessArea :start-position="currentRoundStartPosition" :round="round" @guessed="handleGuess"></TheGuessArea>
-        </ThePanorama>
-        <TheRoundResult v-else :start-position="currentRoundStartPosition" :guess-position="currentRoundGuessPosition"
-            :score="roundScore" :round="round" :distance="distanceFromGuess" @round-end="handleRoundEnd"></TheRoundResult>
+        <div class="standard-game" v-show="mode === 'STANDARD'" style="height: 100%;">
+            <ThePanorama :start-position="currentRoundStartPosition" v-if="roundScore === null">
+                <TheGuessArea :start-position="currentRoundStartPosition" :round="round" @guessed="handleGuess">
+                </TheGuessArea>
+            </ThePanorama>
+            <TheRoundResult v-else :start-position="currentRoundStartPosition"
+                :guess-position="currentRoundGuessPosition" :score="roundScore" :round="round"
+                :distance="distanceFromGuess" @round-end="handleRoundEnd">
+            </TheRoundResult>
+        </div>
+
+        <div class="flag-game" v-show="mode === 'FLAG'" style="height: 100%;">
+            <TestMap></TestMap>
+            
+        </div>
     </div>
 </template>
 
@@ -15,6 +25,11 @@ import TheGuessArea from '../components/TheGuessArea.vue';
 import ThePanorama from '../components/ThePanorama.vue';
 import TheRoundResult from '../components/TheRoundResult.vue';
 import { ref } from 'vue';
+import TestMap from './TestMap.vue';
+
+const { mode } = defineProps({
+    mode: String
+});
 
 const roundScore = ref(null);
 const currentRoundStartPosition = ref(null);
@@ -41,20 +56,20 @@ function startRound() {
 
 function pickStartPosition() {
     const places = [
-        { lat: 60.171001, lng: 24.939350 } /*helsinki*/, 
-        { lat: 48.858093, lng: 2.294694 } /*eiffel tower*/ , 
+        { lat: 60.171001, lng: 24.939350 } /*helsinki*/,
+        { lat: 48.858093, lng: 2.294694 } /*eiffel tower*/,
         { lat: 51.510020, lng: -0.134730 } /*london*/,
-        { lat: 41.8902, lng: 12.4922 } /*coloseum*/, 
-        { lat: 25.195302, lng: 55.272879 } /*burj khalifa*/, 
+        { lat: 41.8902, lng: 12.4922 } /*coloseum*/,
+        { lat: 25.195302, lng: 55.272879 } /*burj khalifa*/,
         { lat: 1.283404, lng: 103.863134 } /*singapore*/,
-        { lat: 29.976768, lng: 31.135538 } /*pyramids*/, 
-        { lat: 40.757876, lng: -73.985592 } /*times sq*/, 
+        { lat: 29.976768, lng: 31.135538 } /*pyramids*/,
+        { lat: 40.757876, lng: -73.985592 } /*times sq*/,
         { lat: 42.345573, lng: -71.098326 } /*boston*/,
-        { lat: 27.172364, lng: 78.0419901} /*taj mahal*/,
+        { lat: 27.172364, lng: 78.0419901 } /*taj mahal*/,
         { lat: -22.952593, lng: -43.209457 } /*christ the redeemer*/,
         { lat: 44.823220, lng: 20.448407 } /*kalemegdan*/,
         { lat: 43.722546, lng: 10.395502 } /*leaning tower pisa*/,
-        { lat: 37.825891, lng: -122.482958} /*golden gate bridge*/,
+        { lat: 37.825891, lng: -122.482958 } /*golden gate bridge*/,
         { lat: -33.857699, lng: 151.217560 } /*sydney opera house*/,
         { lat: 37.971870, lng: 23.727978 } /*acropolis*/,
         { lat: 50.940915, lng: 6.956108 } /*koln cathedral*/,
@@ -72,8 +87,8 @@ function pickStartPosition() {
         { lat: 41.402324, lng: 2.173871 } /*sagrada familia*/,
         { lat: 46.111197, lng: 19.690303 } /*damirova kuca*/,
         { lat: 63.436578, lng: 10.445091 } /*north norway*/,
-        { lat: 55.497638, lng: 9.023594  } /*mid denmark*/,
-        { lat: 55.751672, lng: 37.622761  } /*moscow*/,
+        { lat: 55.497638, lng: 9.023594 } /*mid denmark*/,
+        { lat: 55.751672, lng: 37.622761 } /*moscow*/,
         { lat: 31.306725, lng: 34.788542 } /*israel*/,
         { lat: 14.536699, lng: -16.731669 } /*senegal*/,
         { lat: -27.430130, lng: 23.425565 } /*botswana*/,
