@@ -3,5 +3,9 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-    <div {{ vue_component('Game', { mode: mode }) }} style="height: 100%"></div>
+    {% if mode == 'STANDARD' %}
+        <div {{ vue_component('StandardGame') }} style="height: 100%"></div>
+    {% else %}
+        <div {{ vue_component('FlagGame') }} style="height: 100%"></div>
+    {% endif %}
 {% endblock %}

@@ -1,25 +1,17 @@
 <template>
     <TheFinalResults v-if="isGameOver" :score="score"></TheFinalResults>
     <div class="game" style="height: 100%;" v-else>
-        <div class="standard-game" v-show="mode === 'STANDARD'" style="height: 100%;">
-            <ThePanorama :start-position="currentRoundStartPosition" v-if="roundScore === null">
-                <GuessArea :round="round" @guessed="calculateScore" v-model="isGuessable">
-                    <div class="map-area">
-                        <Map @map-click="setCurrentMarker" @keyup.space="calculateScore"></Map>
-                    </div>
-                </GuessArea>
-            </ThePanorama>
+        <ThePanorama :start-position="currentRoundStartPosition" v-if="roundScore === null">
+            <GuessArea :round="round" @guessed="calculateScore" v-model="isGuessable">
+                <div class="map-area">
+                    <Map @map-click="setCurrentMarker" @keyup.space="calculateScore"></Map>
+                </div>
+            </GuessArea>
+        </ThePanorama>
 
-            <TheRoundResult v-else :start-position="currentRoundStartPosition"
-                :guess-position="currentRoundGuessPosition" :score="roundScore" :round="round"
-                :distance="distanceFromGuess" @round-end="handleRoundEnd">
-            </TheRoundResult>
-        </div>
-
-        <div class="flag-game" v-show="mode === 'FLAG'" style="height: 100%;">
-            <TestMap></TestMap>
-
-        </div>
+        <TheRoundResult v-else :start-position="currentRoundStartPosition" :guess-position="currentRoundGuessPosition"
+            :score="roundScore" :round="round" :distance="distanceFromGuess" @round-end="handleRoundEnd">
+        </TheRoundResult>
     </div>
 </template>
 
@@ -28,13 +20,8 @@ import TheFinalResults from '../components/TheFinalResults.vue';
 import GuessArea from '../components/GuessArea.vue';
 import ThePanorama from '../components/ThePanorama.vue';
 import TheRoundResult from '../components/TheRoundResult.vue';
-import { ref } from 'vue';
-import TestMap from './TestMap.vue';
 import Map from '../components/Map.vue';
-
-const { mode } = defineProps({
-    mode: String
-});
+import { ref } from 'vue';
 
 const roundScore = ref(null);
 const currentRoundStartPosition = ref(null);
