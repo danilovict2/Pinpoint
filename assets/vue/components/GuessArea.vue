@@ -26,7 +26,7 @@ const { startPosition } = defineProps({
 });
 
 const emit = defineEmits(['guessed']);
-const isGuessable = ref(true);
+const isGuessable = defineModel({default: false});
 // FIXED TO THREE MINUTES
 const timer = useTimer(new Date().setSeconds(new Date().getSeconds() + 180));
 

@@ -3,7 +3,7 @@
     <div class="game" style="height: 100%;" v-else>
         <div class="standard-game" v-show="mode === 'STANDARD'" style="height: 100%;">
             <ThePanorama :start-position="currentRoundStartPosition" v-if="roundScore === null">
-                <GuessArea :round="round" @guessed="calculateScore">
+                <GuessArea :round="round" @guessed="calculateScore" v-model="isGuessable">
                     <div class="map-area">
                         <Map @map-click="setCurrentMarker" @keyup.space="calculateScore"></Map>
                     </div>
@@ -44,6 +44,7 @@ const isGameOver = ref(false);
 const distanceFromGuess = ref(0);
 let currentMarker = null;
 let score = 0;
+let isGuessable = ref(false);
 startRound();
 
 function startRound() {
@@ -61,7 +62,7 @@ function handleRoundEnd() {
 }
 
 function setCurrentMarker(latLng, map) {
-    //isGuessable.value = true;
+    isGuessable.value = true;
     currentMarker?.setMap(null);
     currentMarker = new google.maps.Marker({
         position: latLng,
