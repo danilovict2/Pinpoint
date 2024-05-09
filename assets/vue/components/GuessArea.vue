@@ -4,7 +4,7 @@
         <div class="container">
             <div class="round-details">
                 <div class="box">
-                    <h4>Mapa:<br> Širom Sveta</h4>
+                    <h4>Mapa:<br> {{ map }}</h4>
                 </div>
                 <div class="box round">
                     <h4>Runda:<br> {{ round }}/5</h4>
@@ -22,7 +22,8 @@
 import { onMounted, ref, watchEffect } from 'vue';
 import { useTimer } from 'vue-timer-hook';
 const { startPosition } = defineProps({
-    round: Number
+    round: Number,
+    map: String,
 });
 
 const emit = defineEmits(['guessed']);
