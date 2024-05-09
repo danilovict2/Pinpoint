@@ -1,14 +1,27 @@
 <template>
-    <Map style="height: 100%;" @map-click="changePolygonPaths"></Map>
-    <div class="guess-area">
-        <img :src="'/flags/' + guessCountry + '.png'" width="260" height="130" :key="guessCountry">
-        <button :disabled="!isGuessable" @click="guess()">Pogodi</button>
+    <FinalResults v-if="isGameOver" :score="score"></FinalResults>
+    <div v-else style="height: 100%;">
+        <div v-if="roundScore === null" style="height: 100%;">
+            <Map style="height: 100%;" @map-click="changePolygonPaths" @keyup.space="calculateScore" :zoom="4"></Map>
+            <div class="guess-area">
+                <GuessArea :round="round" @guessed="calculateScore" map="Mape Sveta" v-model="isGuessable">
+                    <img :src="'/flags/' + guessCountry + '.png'" :key="guessCountry" class="country-image">
+                </GuessArea>
+            </div>
+        </div>
+
+        <RoundResult v-else :start-position="startPosition" :guess-position="guessPosition" :score="roundScore"
+            :round="round" @round-end="handleRoundEnd">
+        </RoundResult>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import Map from '../components/Map.vue';
+import GuessArea from '../components/GuessArea.vue';
+import RoundResult from '../components/RoundResult.vue';
+import FinalResults from '../components/FinalResults.vue';
 import useCountry from '../stores/country.js';
 import axios from 'axios';
 
@@ -16,12 +29,33 @@ let p = [];
 const isGuessable = ref(false);
 const guessCountry = ref('');
 let finalGuess = '';
+const roundScore = ref(null);
+const round = ref(0);
+const guessPosition = ref({});
+const startPosition = ref({});
+const isGameOver = ref(false);
+let score = 0;
 
-selectGuessCountry();
+startRound();
+
+function startRound() {
+    selectGuessCountry();
+    roundScore.value = null;
+    round.value++;
+}
+
+function handleRoundEnd() {
+    if (round.value < 5) {
+        startRound();
+    } else {
+        isGameOver.value = true;
+    }
+}
 
 function changePolygonPaths(latLng, map, country) {
     isGuessable.value = true;
     finalGuess = country;
+    guessPosition.value = latLng;
 
     for (let polygon of p) {
         polygon.setMap(null);
@@ -41,8 +75,21 @@ function changePolygonPaths(latLng, map, country) {
     }
 }
 
-function guess() {
-    console.log(finalGuess);
+async function calculateScore() {
+    if (!finalGuess) {
+        roundScore.value = 0;
+        return;
+    }
+
+    try {
+        let response = await axios.get(`/search/${finalGuess}`)
+        if (response.data[0]) {
+            roundScore.value = (response.data[0].cca2.toLowerCase() === guessCountry.value) ? 5000 : 0;
+            score += roundScore.value;
+        }
+    } catch (e) {
+        console.log(e);
+    }
 }
 
 function selectGuessCountry() {
@@ -52,8 +99,25 @@ function selectGuessCountry() {
     axios.get(`/search/${country}`)
         .then(response => {
             if (response.data[0]) {
+                startPosition.value = { lat: response.data[0].capitalInfo.latlng[0], lng: response.data[0].capitalInfo.latlng[1] };
                 guessCountry.value = response.data[0].cca2.toLowerCase();
             }
         }).catch(e => console.log(e));
 }
 </script>
+
+<style scoped>
+.guess-area {
+    filter: invert(1);
+}
+
+.country-image {
+    width: 300px;
+    height: 150px;
+    gap: 10px;
+    position: absolute;
+    right: 3rem;
+    bottom: 6rem;
+    margin-top: 100px;
+}
+</style>

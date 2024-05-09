@@ -6,9 +6,11 @@
             <span class="round-count">Runda <strong style="color: #69686f;">{{ round }} / 5</strong> je završena</span>
             Broj bodova u ovoj rundi:
             <span class="max-score"><span class="score">{{ score }}</span> / 5000</span>
-            Razdaljina od tačne lokacije:
-            <span style="color: white;" v-if="distance === -1">-</span>
-            <span style="color: white;" v-else>{{ distance > 1 ? Math.round(distance) + 'km' : Math.round(distance * 1000) + 'm' }}</span>
+            <div v-show="distance">
+                Razdaljina od tačne lokacije:
+                <span style="color: white;" v-if="distance === -1">-</span>
+                <span style="color: white;" v-else>{{ distance > 1 ? Math.round(distance) + 'km' : Math.round(distance * 1000) + 'm' }}</span>
+            </div>
             <button class="continue-btn" @click="emit('roundEnd')">{{ round === 5 ? 'Prikaži rezultate' : 'Sledeća runda' }}</button>
         </div>
     </div>
@@ -21,9 +23,16 @@ import Map from './Map.vue';
 const { startPosition, guessPosition } = defineProps({
     round: Number,
     score: Number,
-    distance: Number,
+    distance: {
+        type: Number,
+        required: false
+    },
     startPosition: Object,
     guessPosition: Object,
+    fitBounds: {
+        type: Boolean,
+        default: true
+    }
 });
 
 const pair = new MarkerPair(startPosition, guessPosition);

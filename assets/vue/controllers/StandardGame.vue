@@ -1,25 +1,25 @@
 <template>
-    <TheFinalResults v-if="isGameOver" :score="score"></TheFinalResults>
+    <FinalResults v-if="isGameOver" :score="score"></FinalResults>
     <div class="game" style="height: 100%;" v-else>
         <ThePanorama :start-position="currentRoundStartPosition" v-if="roundScore === null">
-            <GuessArea :round="round" @guessed="calculateScore" v-model="isGuessable">
+            <GuessArea :round="round" @guessed="calculateScore" map="Širom Sveta" v-model="isGuessable">
                 <div class="map-area">
                     <Map @map-click="setCurrentMarker" @keyup.space="calculateScore"></Map>
                 </div>
             </GuessArea>
         </ThePanorama>
 
-        <TheRoundResult v-else :start-position="currentRoundStartPosition" :guess-position="currentRoundGuessPosition"
+        <RoundResult v-else :start-position="currentRoundStartPosition" :guess-position="currentRoundGuessPosition"
             :score="roundScore" :round="round" :distance="distanceFromGuess" @round-end="handleRoundEnd">
-        </TheRoundResult>
+        </RoundResult>
     </div>
 </template>
 
 <script setup>
-import TheFinalResults from '../components/TheFinalResults.vue';
+import FinalResults from '../components/FinalResults.vue';
 import GuessArea from '../components/GuessArea.vue';
 import ThePanorama from '../components/ThePanorama.vue';
-import TheRoundResult from '../components/TheRoundResult.vue';
+import RoundResult from '../components/RoundResult.vue';
 import Map from '../components/Map.vue';
 import { ref } from 'vue';
 
