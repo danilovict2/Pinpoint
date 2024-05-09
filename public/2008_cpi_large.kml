@@ -3308,30 +3308,6 @@ Confidence interval: 7.8 - 8.8
   </outerBoundaryIs>
 </Polygon>
 </MultiGeometry></Placemark>
-<!-- Macao-->
-<!-- 5.4 -->
-<Placemark>
-<name>Macao</name><styleUrl>#defaultStyles</styleUrl>
-<description>
-CPI 2008 rank: 43<br />
-Score: 5.4<br />
-Surveys used: 4<br />
-Confidence interval: 3.9 - 6.2
-</description>
-<Style><PolyStyle>
-<color>dc00d2fa</color>
-</PolyStyle></Style>
-<MultiGeometry>
-<Polygon>
-  <outerBoundaryIs>
-    <LinearRing>
-      <coordinates>
-        113.53,22.19,0 113.55,22.18,0 113.55,22.21,0 113.53,22.19,0
-      </coordinates>
-    </LinearRing>
-  </outerBoundaryIs>
-</Polygon>
-</MultiGeometry></Placemark>
 <!-- North Macedonia -->
 <!-- 3.6 -->
 <Placemark>
