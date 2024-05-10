@@ -31,13 +31,15 @@ const isGameOver = ref(false);
 const distanceFromGuess = ref(0);
 let currentMarker = null;
 let score = 0;
-let isGuessable = ref(false);
+const isGuessable = ref(false);
 startRound();
 
 function startRound() {
     currentRoundStartPosition.value = pickStartPosition();
     roundScore.value = null;
     round.value++;
+    isGuessable.value = false;
+    currentMarker = null;
 }
 
 function handleRoundEnd() {

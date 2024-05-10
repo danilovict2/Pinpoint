@@ -42,6 +42,9 @@ function startRound() {
     pickStartPosition();
     roundScore.value = null;
     round.value++;
+    isGuessable.value = false;
+    finalGuess = '';
+    guessPosition.value = {};
 }
 
 function handleRoundEnd() {
