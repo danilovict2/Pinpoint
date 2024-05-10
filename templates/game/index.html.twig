@@ -5,7 +5,17 @@
 {% block body %}
     {% if mode == 'STANDARD' %}
         <div {{ vue_component('StandardGame') }} style="height: 100%"></div>
-    {% else %}
+    {% elseif mode == 'FLAG' %}
         <div {{ vue_component('FlagGame') }} style="height: 100%"></div>
+    {% else %}
+        <div {{ vue_component('CountryGame') }} style="height: 100%"></div>
     {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        // UNCOMMENT WHEN NOT IN DEVELOPMENT
+        //window.onbeforeunload = () => "This page is asking you to confirm that you want to leave — information you've entered may not be saved."; 
+    </script>
 {% endblock %}

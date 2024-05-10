@@ -10,14 +10,13 @@
             {{ encore_entry_link_tags('app') }}
 		{% endblock %}
 
-	</head>
-	<body>
-		{% block body %}{% endblock %}
-
-        {% block javascripts %}
+		{% block javascripts %}
 			<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&libraries=&v=weekly"></script>
 			<script src="https://kit.fontawesome.com/0ee3e5371e.js" crossorigin="anonymous"></script>
             {{ encore_entry_script_tags('app') }}
 		{% endblock %}
+	</head>
+	<body>
+		{% block body %}{% endblock %}
 	</body>
 </html>

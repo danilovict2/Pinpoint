@@ -1,16 +1,16 @@
 <template>
     <FinalResults v-if="isGameOver" :score="score"></FinalResults>
     <div class="game" style="height: 100%;" v-else>
-        <Panorama :start-position="currentRoundStartPosition" v-if="roundScore === null">
+        <Panorama :start-position="startPosition" v-if="roundScore === null">
             <GuessArea :round="round" @guessed="calculateScore" map="Širom Sveta" v-model="isGuessable">
                 <div class="map-area">
-                    <Map @map-click="setCurrentMarker" @keyup.space="calculateScore"></Map>
+                    <Map @map-click="changePolygonPaths" @keyup.space="calculateScore"></Map>
                 </div>
             </GuessArea>
         </Panorama>
 
-        <RoundResult v-else :start-position="currentRoundStartPosition" :guess-position="currentRoundGuessPosition"
-            :score="roundScore" :round="round" :distance="distanceFromGuess" @round-end="handleRoundEnd">
+        <RoundResult v-else :start-position="startPosition" :guess-position="guessPosition"
+            :score="roundScore" :round="round" @round-end="handleRoundEnd">
         </RoundResult>
     </div>
 </template>
@@ -21,21 +21,25 @@ import FinalResults from '../components/FinalResults.vue';
 import GuessArea from '../components/GuessArea.vue';
 import Panorama from '../components/Panorama.vue';
 import RoundResult from '../components/RoundResult.vue';
+import axios from 'axios';
+import useCountry from '../stores/country';
 import Map from '../components/Map.vue';
 
-const roundScore = ref(null);
-const currentRoundStartPosition = ref(null);
-const currentRoundGuessPosition = ref(null);
-const round = ref(0);
+let p = [];
 const isGameOver = ref(false);
-const distanceFromGuess = ref(0);
-let currentMarker = null;
+const roundScore = ref(null);
+const round = ref(0);
+const startPosition = ref({});
+const guessCountry = ref('');
+const guessPosition = ref({});
+const isGuessable = ref(false);
+let finalGuess = '';
 let score = 0;
-let isGuessable = ref(false);
+
 startRound();
 
 function startRound() {
-    currentRoundStartPosition.value = pickStartPosition();
+    pickStartPosition();
     roundScore.value = null;
     round.value++;
 }
@@ -48,44 +52,37 @@ function handleRoundEnd() {
     }
 }
 
-function setCurrentMarker(latLng, map) {
+function changePolygonPaths(latLng, map, country) {
     isGuessable.value = true;
-    currentMarker?.setMap(null);
-    currentMarker = new google.maps.Marker({
-        position: latLng,
-        map: map,
-        icon: URL = "/img/player-marker.png"
-    });
+    finalGuess = country;
+    guessPosition.value = latLng;
+
+    for (let polygon of p) {
+        polygon.setMap(null);
+    }
+
+    const countryPolygonPaths = useCountry().countries.get(country);
+    for (let polygonPath of countryPolygonPaths) {
+        p.push(new google.maps.Polygon({
+            paths: polygonPath,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+            map: map
+        }));
+    }
 }
 
 function calculateScore() {
-    // Earth's radius in metres (mean radius = 6,371km)
-    const radius = 6371e3;
-    const position = currentMarker.position;
-    const startPosition = currentRoundStartPosition.value;
+    if (!finalGuess) {
+        roundScore.value = 0;
+        return;
+    }
 
-    // Angles need to be radians to pass trig functions!
-    const lat1Radian = (position.lat() * Math.PI) / 180;
-    const lat2Radian = (startPosition.lat * Math.PI) / 180;
-    const latDelta = ((position.lat() - startPosition.lat) * Math.PI) / 180;
-    const longDelta = ((position.lng() - startPosition.lng) * Math.PI) / 180;
-
-    // The square of half the chord length between the points
-    const a =
-        Math.sin(latDelta / 2) * Math.sin(latDelta / 2) +
-        Math.cos(lat1Radian) *
-        Math.cos(lat2Radian) *
-        Math.sin(longDelta / 2) *
-        Math.sin(longDelta / 2);
-
-    // Angular distance in radians
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    // Distance is the radius * angular distance
-    distanceFromGuess.value = (radius * c) / 1000;
-    roundScore.value = Math.round(5000 * Math.exp(-0.5 * (distanceFromGuess.value / 2000) ** 2));
-    currentRoundGuessPosition.value = { lat: position.lat(), lng: position.lng() };
-    score += roundScore.value;
+    roundScore.value = (finalGuess === guessCountry.value) ? 5000 : 0;
+    score += roundScore.value;    
 }
 
 function pickStartPosition() {
@@ -139,32 +136,14 @@ function pickStartPosition() {
         { lat: 40.927263, lng: -5.617899 } /*salamanca spain*/,
     ];
 
-    return places[Math.floor(Math.random() * (places.length))];
+    startPosition.value = places[Math.floor(Math.random() * (places.length))];
+    axios.post('/reverse', null, {
+            params: {
+                lat: startPosition.value.lat,
+                lng: startPosition.value.lng,
+            }
+        })
+            .then(result => guessCountry.value = result.data.address.country)   
+            .catch(e => console.log(e));
 }
 </script>
-
-<style>
-.map-area {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    height: 250px;
-    gap: 10px;
-    position: absolute;
-    right: 3rem;
-    transition: all 0.1s ease-out;
-    bottom: 6rem;
-    opacity: .6;
-    transition-delay: 0.5s;
-    margin-top: 100px;
-}
-
-.map-area:hover {
-    width: 640px;
-    height: 700px;
-    margin-bottom: -150px;
-    opacity: 1;
-    transition-delay: 0s;
-    margin-top: 0px;
-}
-</style>
