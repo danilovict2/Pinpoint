@@ -1,7 +1,7 @@
 <template>
     <div class="result">
         <Map style="width: 75%; height: 100%;" fit-bounds :center="guessPosition"
-            :markers="markers" :lines="lines"></Map>
+            :markers="markers" :itemsToDisplay="lines"></Map>
         <div class="details">
             <span class="round-count">Runda <strong style="color: #69686f;">{{ round }} / 5</strong> je završena</span>
             Broj bodova u ovoj rundi:

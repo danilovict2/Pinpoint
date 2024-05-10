@@ -1,6 +1,6 @@
 <template>
     <div class="result">
-        <Map class="result-map" style="height: 100%;" :zoom="3" :markers="markers" :lines="lines"></Map>
+        <Map class="result-map" style="height: 100%;" :zoom="3" :markers="markers" :itemsToDisplay="lines"></Map>
         <div class="details">
             <h1 style="color: white; font-weight:bold; font-size: 20px; border: none;">KONAČNI REZULTATI</h1>
             <div class="player-scores">

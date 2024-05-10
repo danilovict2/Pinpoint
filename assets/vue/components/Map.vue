@@ -5,7 +5,7 @@
 <script setup>
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
-const { zoom, center, markers, lines, fitBounds, polygons } = defineProps({
+const { zoom, center, markers, itemsToDisplay, fitBounds } = defineProps({
     zoom: {
         type: Number,
         default: 1
@@ -18,7 +18,7 @@ const { zoom, center, markers, lines, fitBounds, polygons } = defineProps({
         type: Array,
         default: []
     },
-    lines: {
+    itemsToDisplay: {
         type: Array,
         default: []
     },
@@ -26,10 +26,7 @@ const { zoom, center, markers, lines, fitBounds, polygons } = defineProps({
         type: Boolean,
         default: false
     },
-    polygons: {
-        type: Array,
-        default: []
-    }
+    
 });
 
 const mapDiv = ref(null);
@@ -62,8 +59,8 @@ onMounted(() => {
         marker.setMap(map);
     }
 
-    for (let line of lines) {
-        line.setMap(map);
+    for (let item of itemsToDisplay) {
+        item.setMap(map);
     }
 
     if (fitBounds) {
@@ -72,10 +69,6 @@ onMounted(() => {
             bounds.extend(marker.position);
         }
         map.fitBounds(bounds);
-    }
-
-    for (let polyogn of polygons) {
-        polyogn.setMap(map);
     }
 });
 </script>

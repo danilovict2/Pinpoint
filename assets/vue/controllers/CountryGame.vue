@@ -68,11 +68,11 @@ function changePolygonPaths(latLng, map, country) {
     for (let polygonPath of countryPolygonPaths) {
         p.push(new google.maps.Polygon({
             paths: polygonPath,
-            strokeColor: "#FF0000",
+            strokeColor: "#414946",
             strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: "#FF0000",
-            fillOpacity: 0.35,
+            strokeWeight: 1,
+            fillColor: "#387389",
+            fillOpacity: 0.5,
             map: map
         }));
     }
