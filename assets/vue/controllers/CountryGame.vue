@@ -10,7 +10,7 @@
         </Panorama>
 
         <RoundResult v-else :start-position="startPosition" :guess-position="guessPosition"
-            :score="roundScore" :round="round" @round-end="handleRoundEnd">
+            :score="roundScore" :round="round" @round-end="handleRoundEnd" :polygons="[...guessCountryPolygons, ...p]">
         </RoundResult>
     </div>
 </template>
@@ -26,6 +26,7 @@ import useCountry from '../stores/country';
 import Map from '../components/Map.vue';
 
 let p = [];
+let guessCountryPolygons = [];
 const isGameOver = ref(false);
 const roundScore = ref(null);
 const round = ref(0);
@@ -64,26 +65,30 @@ function changePolygonPaths(latLng, map, country) {
         polygon.setMap(null);
     }
 
+    p = getPolygonsForCountry(country, map, "#387389");
+}
+
+function getPolygonsForCountry(country, map, fillColor) {
     const countryPolygonPaths = useCountry().countries.get(country);
+    let polygons = [];     
     for (let polygonPath of countryPolygonPaths) {
-        p.push(new google.maps.Polygon({
+        polygons.push(new google.maps.Polygon({
             paths: polygonPath,
-            strokeColor: "#414946",
+            strokeColor: "#000000",
             strokeOpacity: 0.8,
-            strokeWeight: 1,
-            fillColor: "#387389",
+            strokeWeight: 0.3,
+            fillColor: fillColor,
             fillOpacity: 0.5,
             map: map
         }));
     }
+
+    return polygons;
 }
 
 function calculateScore() {
-    if (!finalGuess) {
-        roundScore.value = 0;
-        return;
-    }
-
+    p = (finalGuess !== guessCountry.value && finalGuess !== '') ? getPolygonsForCountry(finalGuess, null, '#ff0000') : [];
+    guessCountryPolygons = getPolygonsForCountry(guessCountry.value, null, '#00ff00');
     roundScore.value = (finalGuess === guessCountry.value) ? 5000 : 0;
     score += roundScore.value;    
 }

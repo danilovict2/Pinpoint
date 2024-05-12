@@ -11,7 +11,7 @@
         </div>
 
         <RoundResult v-else :start-position="startPosition" :guess-position="guessPosition" :score="roundScore"
-            :round="round" @round-end="handleRoundEnd">
+            :round="round" @round-end="handleRoundEnd" :polygons="[...guessCountryPolygons, ...p]">
         </RoundResult>
     </div>
 </template>
@@ -26,9 +26,10 @@ import useCountry from '../stores/country.js';
 import axios from 'axios';
 
 let p = [];
+let guessCountryPolygons = [];
 const isGuessable = ref(false);
 const guessCountry = ref('');
-let finalGuess = '';
+let finalGuess = '-1';
 const roundScore = ref(null);
 const round = ref(0);
 const guessPosition = ref({});
@@ -64,30 +65,41 @@ function changePolygonPaths(latLng, map, country) {
         polygon.setMap(null);
     }
 
+    p = getPolygonsForCountry(country, map, "#387389");
+}
+
+function getPolygonsForCountry(country, map, fillColor) {
     const countryPolygonPaths = useCountry().countries.get(country);
+    let polygons = [];     
     for (let polygonPath of countryPolygonPaths) {
-        p.push(new google.maps.Polygon({
+        polygons.push(new google.maps.Polygon({
             paths: polygonPath,
-            strokeColor: "#414946",
+            strokeColor: "#000000",
             strokeOpacity: 0.8,
-            strokeWeight: 1,
-            fillColor: "#387389",
+            strokeWeight: 0.3,
+            fillColor: fillColor,
             fillOpacity: 0.5,
             map: map
         }));
     }
+
+    return polygons;
 }
 
 async function calculateScore() {
     if (!finalGuess) {
         roundScore.value = 0;
+        p = [];
         return;
     }
 
     try {
         let response = await axios.get(`/search/${finalGuess}`)
         if (response.data[0]) {
-            roundScore.value = (response.data[0].cca2.toLowerCase() === guessCountry.value) ? 5000 : 0;
+            const isCorrect = response.data[0].cca2.toLowerCase() === guessCountry.value;
+            p = (!isCorrect) ? getPolygonsForCountry(finalGuess, null, '#ff0000') : [];
+            
+            roundScore.value = (isCorrect) ? 5000 : 0;
             score += roundScore.value;
         }
     } catch (e) {
@@ -98,6 +110,7 @@ async function calculateScore() {
 function selectGuessCountry() {
     let keys = Array.from(useCountry().countries.keys());
     let country = keys[Math.floor(Math.random() * keys.length)];
+    guessCountryPolygons = getPolygonsForCountry(country, null, '#00ff00');
 
     axios.get(`/search/${country}`)
         .then(response => {

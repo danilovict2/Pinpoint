@@ -1,7 +1,7 @@
 <template>
     <div class="result">
         <Map style="width: 75%; height: 100%;" fit-bounds :center="guessPosition"
-            :markers="markers" :itemsToDisplay="lines"></Map>
+            :markers="markers" :itemsToDisplay="polygons.length ? polygons : lines"></Map>
         <div class="details">
             <span class="round-count">Runda <strong style="color: #69686f;">{{ round }} / 5</strong> je završena</span>
             Broj bodova u ovoj rundi:
@@ -20,7 +20,7 @@
 import { game } from '../stores/game.js';
 import MarkerPair from '../services/MarkerPair.js';
 import Map from './Map.vue';
-const { startPosition, guessPosition } = defineProps({
+const { startPosition, guessPosition, polygons } = defineProps({
     round: Number,
     score: Number,
     distance: {
@@ -29,9 +29,9 @@ const { startPosition, guessPosition } = defineProps({
     },
     startPosition: Object,
     guessPosition: Object,
-    fitBounds: {
-        type: Boolean,
-        default: true
+    polygons: {
+        type: Array,
+        default: []
     }
 });
 
