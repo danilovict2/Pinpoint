@@ -4,7 +4,7 @@
         <div class="details">
             <h1 style="color: white; font-weight:bold; font-size: 20px; border: none;">KONAČNI REZULTATI</h1>
             <div class="player-scores">
-                <h1>1</h1> <div class="name-and-score">Ime <strong style="color: #43a047;">{{ score }}</strong></div>
+                <h1>1</h1> <div class="name-and-score">Korisnik 1 <strong style="color: #43a047;">{{ score }}</strong></div>
             </div>
             <button class="play-again-btn" @click="playAgain">IGRAJ PONOVO</button>
             <a href="/"><button class="back-to-menu-btn">POVRATAK NA POČETNI MENI</button></a>

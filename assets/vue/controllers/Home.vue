@@ -1,20 +1,9 @@
 <template>
-    <div @click.capture="setLoginModalActive(false); setRegisterModalActive(false);">
-        <Navbar @toggle-login-modal="setLoginModalActive(true)" @toggle-register-modal="setRegisterModalActive(true)">
-        </Navbar>
+    <div>
+        <Navbar />
 
         <div class="middle-section">
             <img src="/img/homepage-bg.jpg" class="middle-section-bg" alt="">
-            <div class="locked-msg" style="display: none;">
-                <h2>PRIJAVI SE ILI NAPRAVI NALOG</h2>
-                <h4>Dobij pristup tri moda igranja - besplatno!</h4>
-                <i class="fa-solid fa-lock"
-                    style="color: #ffffff; font-size: 60px; border: none; padding: 0px; margin-bottom: 80px;"></i>
-                <div class="login-signup">
-                    <button @click="emit('toggleLoginModal')" type="button" class="login">PRIJAVI SE</button>
-                    <button @click="emit('toggleRegisterModal')" type="button" class="signup">NAPRAVI NALOG</button>
-                </div>
-            </div>
             <form class="game-btns" action="/play">
                 <input type="hidden" name="mode" :value="mode">
 
@@ -60,28 +49,13 @@
 
         </div>
         <img src="/img/map-photo.png" class="map-photo">
-        <LoginModal :modal-active="loginModalActive" @close="setLoginModalActive(false)"></LoginModal>
-        <RegisterModal :modal-active="registerModalActive" @close="setRegisterModalActive(false)"></RegisterModal>
     </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import LoginModal from "../components/LoginModal.vue";
-import RegisterModal from "../components/RegisterModal.vue";
 import Navbar from '../components/Navbar.vue';
-
-const loginModalActive = ref(false);
-const registerModalActive = ref(false);
 const mode = ref('');
-
-function setLoginModalActive(isActive) {
-    loginModalActive.value = isActive;
-}
-
-function setRegisterModalActive(isActive) {
-    registerModalActive.value = isActive;
-}
 </script>
 
 <style scoped>
@@ -114,30 +88,6 @@ i {
 .flag-game:hover {
     transform: scale(1.1);
     transition: 0.2s ease-in-out;
-}
-
-.locked-msg {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 6;
-    width: 1000px;
-    height: 300px;
-    background-color: rgba(29, 29, 29, 0.887);
-    color: white;
-    font-weight: bold;
-    font-size: larger;
-    border-radius: 20px;
-
-}
-
-.locked {
-    filter: grayscale(1) blur(3px);
-    pointer-events: none;
 }
 
 h4 {
