@@ -5,7 +5,7 @@
         <div class="details">
             <span class="round-count">Runda <strong style="color: #69686f;">{{ round }} / 5</strong> je završena</span>
             Broj bodova u ovoj rundi:
-            <span class="max-score"><span class="score">{{ score }}</span> / 5000</span>
+            <span class="max-score"><span :class="score === 0 ? 'red-score' : 'green-score'" class="score">{{ score }}</span> / 5000</span>
             <div v-show="distance">
                 Razdaljina od tačne lokacije:
                 <span style="color: white;" v-if="distance === -1">-</span>
@@ -116,13 +116,4 @@ const emit = defineEmits(['roundEnd']);
     font-size: 18px;
     margin-bottom: 50px;
 }
-
-.green-score{
-    color: #43a047;
-}
-
-.red-score{
-    color: #f44336;
-}
-
 </style>

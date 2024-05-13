@@ -38,3 +38,11 @@ body {
     80%{transform:scale(1.2)}
     to{transform:scale(1)}
 }
+
+.green-score{
+  color: #43a047;
+}
+
+.red-score{
+  color: #f44336;
+}
