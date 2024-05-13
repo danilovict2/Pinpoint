@@ -126,7 +126,6 @@ function pickStartPosition() {
         { lat: 55.497638, lng: 9.023594 } /*mid denmark*/,
         { lat: 55.751672, lng: 37.622761 } /*moscow*/,
         { lat: 31.306725, lng: 34.788542 } /*israel*/,
-        { lat: 14.536699, lng: -16.731669 } /*senegal*/,
         { lat: 4.721541, lng: -74.041779 } /*bogota*/,
         { lat: 22.161356, lng: -100.956237 } /*san luis mexico*/,
         { lat: 32.787682, lng: -96.800156 } /*dallas*/,
