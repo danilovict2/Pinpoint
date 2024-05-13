@@ -112,7 +112,7 @@ function selectGuessCountry() {
     let country = keys[Math.floor(Math.random() * keys.length)];
     guessCountryPolygons = getPolygonsForCountry(country, null, '#05a805');
 
-    axios.get(`/search/Netherlands`)
+    axios.get(`/search/${country.toLowerCase()}`)
         .then(response => {
             console.log(response.data);
             if (response.data[0]) {
