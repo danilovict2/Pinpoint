@@ -114,7 +114,6 @@ function selectGuessCountry() {
 
     axios.get(`/search/${country.toLowerCase()}`)
         .then(response => {
-            console.log(response.data);
             if (response.data[0]) {
                 startPosition.value = { lat: response.data[0].capitalInfo.latlng[0], lng: response.data[0].capitalInfo.latlng[1] };
                 guessCountry.value = response.data[0].cca2.toLowerCase();

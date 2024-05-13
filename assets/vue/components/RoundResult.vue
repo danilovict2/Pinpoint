@@ -110,11 +110,19 @@ const emit = defineEmits(['roundEnd']);
 
 .score{
     font-size: 30px;
-    color: #43a047;
 }
 
 .max-score{
     font-size: 18px;
     margin-bottom: 50px;
 }
+
+.green-score{
+    color: #43a047;
+}
+
+.red-score{
+    color: #f44336;
+}
+
 </style>
