@@ -65,7 +65,7 @@ function changePolygonPaths(latLng, map, country) {
         polygon.setMap(null);
     }
 
-    p = getPolygonsForCountry(country, map, "#387389");
+    p = getPolygonsForCountry(country, map, "#42a4eb");
 }
 
 function getPolygonsForCountry(country, map, fillColor) {
@@ -76,9 +76,9 @@ function getPolygonsForCountry(country, map, fillColor) {
             paths: polygonPath,
             strokeColor: "#000000",
             strokeOpacity: 0.8,
-            strokeWeight: 0.3,
+            strokeWeight: 0.7,
             fillColor: fillColor,
-            fillOpacity: 0.5,
+            fillOpacity: 0.3,
             map: map
         }));
     }
@@ -87,8 +87,8 @@ function getPolygonsForCountry(country, map, fillColor) {
 }
 
 function calculateScore() {
-    p = (finalGuess !== guessCountry.value && finalGuess !== '') ? getPolygonsForCountry(finalGuess, null, '#ff0000') : [];
-    guessCountryPolygons = getPolygonsForCountry(guessCountry.value, null, '#00ff00');
+    p = (finalGuess !== guessCountry.value && finalGuess !== '') ? getPolygonsForCountry(finalGuess, null, '#ff2d03') : [];
+    guessCountryPolygons = getPolygonsForCountry(guessCountry.value, null, '#05a805');
     roundScore.value = (finalGuess === guessCountry.value) ? 5000 : 0;
     score += roundScore.value;    
 }

@@ -65,7 +65,7 @@ function changePolygonPaths(latLng, map, country) {
         polygon.setMap(null);
     }
 
-    p = getPolygonsForCountry(country, map, "#387389");
+    p = getPolygonsForCountry(country, map, "#42a4eb");
 }
 
 function getPolygonsForCountry(country, map, fillColor) {
@@ -76,9 +76,9 @@ function getPolygonsForCountry(country, map, fillColor) {
             paths: polygonPath,
             strokeColor: "#000000",
             strokeOpacity: 0.8,
-            strokeWeight: 0.3,
+            strokeWeight: 0.7,
             fillColor: fillColor,
-            fillOpacity: 0.5,
+            fillOpacity: 0.3,
             map: map
         }));
     }
@@ -97,7 +97,7 @@ async function calculateScore() {
         let response = await axios.get(`/search/${finalGuess}`)
         if (response.data[0]) {
             const isCorrect = response.data[0].cca2.toLowerCase() === guessCountry.value;
-            p = (!isCorrect) ? getPolygonsForCountry(finalGuess, null, '#ff0000') : [];
+            p = (!isCorrect) ? getPolygonsForCountry(finalGuess, null, '#ff2d03') : [];
             
             roundScore.value = (isCorrect) ? 5000 : 0;
             score += roundScore.value;
@@ -110,10 +110,11 @@ async function calculateScore() {
 function selectGuessCountry() {
     let keys = Array.from(useCountry().countries.keys());
     let country = keys[Math.floor(Math.random() * keys.length)];
-    guessCountryPolygons = getPolygonsForCountry(country, null, '#00ff00');
+    guessCountryPolygons = getPolygonsForCountry(country, null, '#05a805');
 
-    axios.get(`/search/${country}`)
+    axios.get(`/search/Netherlands`)
         .then(response => {
+            console.log(response.data);
             if (response.data[0]) {
                 startPosition.value = { lat: response.data[0].capitalInfo.latlng[0], lng: response.data[0].capitalInfo.latlng[1] };
                 guessCountry.value = response.data[0].cca2.toLowerCase();
@@ -129,7 +130,7 @@ function selectGuessCountry() {
 
 .country-image {
     width: 300px;
-    height: 150px;
+    height: 180px;
     gap: 10px;
     position: absolute;
     right: 3rem;
