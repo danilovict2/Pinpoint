@@ -24,6 +24,7 @@ import RoundResult from '../components/RoundResult.vue';
 import axios from 'axios';
 import useCountry from '../stores/country';
 import Map from '../components/Map.vue';
+import { getLocations } from '../stores/locations.js';
 
 let p = [];
 let guessCountryPolygons = [];
@@ -94,54 +95,7 @@ function calculateScore() {
 }
 
 function pickStartPosition() {
-    const places = [
-        { lat: 60.171001, lng: 24.939350 } /*helsinki*/,
-        { lat: 48.858093, lng: 2.294694 } /*eiffel tower*/,
-        { lat: 51.510020, lng: -0.134730 } /*london*/,
-        { lat: 41.8902, lng: 12.4922 } /*coloseum*/,
-        { lat: 25.195302, lng: 55.272879 } /*burj khalifa*/,
-        { lat: 1.283404, lng: 103.863134 } /*singapore*/,
-        { lat: 29.976768, lng: 31.135538 } /*pyramids*/,
-        { lat: 40.757876, lng: -73.985592 } /*times sq*/,
-        { lat: 42.345573, lng: -71.098326 } /*boston*/,
-        { lat: 27.172364, lng: 78.0419901 } /*taj mahal*/,
-        { lat: -22.952593, lng: -43.209457 } /*christ the redeemer*/,
-        { lat: 44.823220, lng: 20.448407 } /*kalemegdan*/,
-        { lat: 43.722546, lng: 10.395502 } /*leaning tower pisa*/,
-        { lat: 37.825891, lng: -122.482958 } /*golden gate bridge*/,
-        { lat: -33.857699, lng: 151.217560 } /*sydney opera house*/,
-        { lat: 37.971870, lng: 23.727978 } /*acropolis*/,
-        { lat: 50.940915, lng: 6.956108 } /*koln cathedral*/,
-        { lat: 51.178980, lng: -1.823139 } /*stonehenge*/,
-        { lat: 34.134454, lng: -118.321660 } /*hollywood sign*/,
-        { lat: 35.658675, lng: 139.747089 } /*tokyo tower*/,
-        { lat: 43.641424, lng: -79.387015 } /*toronto*/,
-        { lat: 44.016802, lng: 20.888691 } /*kragujevac spomenik*/,
-        { lat: 44.796725, lng: 20.470112 } /*hram svetog save*/,
-        { lat: 46.101668, lng: 19.668135 } /*subotica boss*/,
-        { lat: 46.099798, lng: 19.758494 } /*palic*/,
-        { lat: 46.109345, lng: 19.668796 } /*majsanski most*/,
-        { lat: 45.431228, lng: 12.333307 } /*venice*/,
-        { lat: 43.772783, lng: 11.253926 } /*firenze*/,
-        { lat: 41.402324, lng: 2.173871 } /*sagrada familia*/,
-        { lat: 46.111197, lng: 19.690303 } /*damirova kuca*/,
-        { lat: 63.436578, lng: 10.445091 } /*north norway*/,
-        { lat: 55.497638, lng: 9.023594 } /*mid denmark*/,
-        { lat: 55.751672, lng: 37.622761 } /*moscow*/,
-        { lat: 31.306725, lng: 34.788542 } /*israel*/,
-        { lat: 4.721541, lng: -74.041779 } /*bogota*/,
-        { lat: 22.161356, lng: -100.956237 } /*san luis mexico*/,
-        { lat: 32.787682, lng: -96.800156 } /*dallas*/,
-        { lat: 29.956409, lng: -90.063351 } /*new orleans*/,
-        { lat: 64.054864, lng: -21.494411 } /*iceland*/,
-        { lat: 28.602995, lng: 77.082660 } /*new delhi*/,
-        { lat: 13.770791, lng: 100.565907 } /*bangkok*/,
-        { lat: 56.233422, lng: 92.159842 } /*siberia*/,
-        { lat: 36.359045, lng: 127.423773 } /*daejeon south korea*/,
-        { lat: 34.687419, lng: 135.523136 } /*osaka*/,
-        { lat: 40.927263, lng: -5.617899 } /*salamanca spain*/,
-    ];
-
+    const places = getLocations();
     startPosition.value = places[Math.floor(Math.random() * (places.length))];
     axios.post('/reverse', null, {
             params: {
